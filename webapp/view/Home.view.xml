@@ -1,6 +1,48 @@
 <mvc:View controllerName="fmi.Eco.controller.Home"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page showHeader="true">
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:core="sap.ui.core">
+    <Page showHeader="false">
+        <content>
+            <MessagePage visible="true" icon="sap-icon://e-care" text="Create your first Eco-Log!" description="Use the button below."/>
+            <f:GridList headerText="My Logs" visible="false">
+                <f:customLayout>
+                    <grid:GridBoxLayout boxWidth="17.5rem" />
+                </f:customLayout>
+
+                <f:GridListItem>
+                    <VBox height="100%" justifyContent="SpaceBetween">
+                        <layoutData>
+                            <FlexItemData growFactor="1" shrinkFactor="0" />
+                            <!-- Don't shrink below minimum size. Fill space if available. -->
+                        </layoutData>
+
+                        <VBox class="sapUiSmallMargin">
+                            <HBox justifyContent="SpaceBetween">
+                                <core:Icon src="sap-icon://e-leaf" size="2.625rem" color="Default" class="sapUiTinyMarginBottom" />
+                                <ObjectStatus text="Log confirmed" state="Success" />
+                            </HBox>
+                            <Title text="Log" wrapping="true" />
+                            <Label text="19.10.2020" wrapping="true" class="sapUiTinyMarginBottom" />
+                            <Text text="Your Eco-Log has been confirmed. 20 Points have been awared to your account" wrapping="true" />
+                        </VBox>
+                        <OverflowToolbar design="Solid">
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://edit" type="Transparent" />
+                            <Button icon="sap-icon://delete" type="Transparent" />
+                            <Button icon="sap-icon://message-information" type="Transparent" />
+                        </OverflowToolbar>
+                    </VBox>
+                </f:GridListItem>
+            </f:GridList>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button type="Emphasized" text="New Log"/>
+            </OverflowToolbar>
+        </footer>
     </Page>
 </mvc:View>

@@ -1,0 +1,20 @@
+<mvc:View controllerName="fmi.Eco.controller.Ranked"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page showHeader="false">
+        <content>
+            <List items="" headerText="Top Eco Scorers">
+                <ObjectListItem title="" type="Active" press="" number="" numberUnit="Points">
+                    <firstStatus>
+                        <ObjectStatus text="{Status}" state="{
+						path: 'Status',
+						formatter: 'sap.m.sample.ObjectListItem.Formatter.status'
+					}" />
+                    </firstStatus>
+                    <ObjectAttribute text="" />
+                    <ObjectAttribute text="" />
+                </ObjectListItem>
+            </List>
+        </content>
+    </Page>
+</mvc:View>

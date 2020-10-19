@@ -1,0 +1,24 @@
+<mvc:View controllerName="fmi.Eco.controller.Info"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page showHeader="false">
+        <content>
+            <List items="" headerText="Latest News and Tips">
+                <CustomListItem>
+                    <SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" transitionTime="250" displayTime="2500">
+                        <GenericTile backgroundImage="" frameType="TwoByOne" press="pressOnTileOne">
+                            <TileContent footer="August 21, 2016">
+                                <NewsContent contentText="" subheader="Today, SAP News" />
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile backgroundImage="" frameType="TwoByOne" state="Failed">
+                            <TileContent footer="August 21, 2016">
+                                <NewsContent contentText="" subheader="Today, SAP News" />
+                            </TileContent>
+                        </GenericTile>
+                    </SlideTile>
+                </CustomListItem>
+            </List>
+        </content>
+    </Page>
+</mvc:View>
