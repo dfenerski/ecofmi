@@ -1,0 +1,6 @@
+<mvc:View controllerName="fmi.Eco.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page showHeader="true">
+    </Page>
+</mvc:View>

@@ -1,0 +1,43 @@
+<mvc:View controllerName="fmi.Eco.controller.Root"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:tnt="sap.tnt">
+	<Shell id="rootShell" appWidthLimited="false">
+		<App id="rootApp">
+			<pages>
+				<tnt:ToolPage id="rootPage">
+					<tnt:header>
+						<tnt:ToolHeader>
+							<Button icon="sap-icon://menu2" type="Transparent" press="toggleMenuExpanded">
+								<layoutData>
+									<OverflowToolbarLayoutData priority="NeverOverflow" />
+								</layoutData>
+							</Button>
+							<ToolbarSpacer width="20px" />
+							<ToolbarSpacer />
+							<Avatar displaySize="XS" />
+							<Button icon="sap-icon://grid" type="Transparent" />
+						</tnt:ToolHeader>
+					</tnt:header>
+					<tnt:sideContent>
+						<tnt:SideNavigation expanded="{local>/menu/expanded}">
+							<tnt:NavigationList items="{local>/menu/items}">
+								<tnt:NavigationListItem text="{local>title}" icon="{local>icon}" key="{local>key}"/>
+							</tnt:NavigationList>
+							<tnt:fixedItem>
+								<!-- <tnt:NavigationList /> -->
+							</tnt:fixedItem>
+						</tnt:SideNavigation>
+					</tnt:sideContent>
+					<tnt:mainContents>
+						<NavContainer id="rootNavigator">
+							<pages>
+								<!--added by router-->
+							</pages>
+						</NavContainer>
+					</tnt:mainContents>
+				</tnt:ToolPage>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
