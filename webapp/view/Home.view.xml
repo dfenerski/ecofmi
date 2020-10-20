@@ -41,7 +41,7 @@
         <footer>
             <OverflowToolbar>
                 <ToolbarSpacer/>
-                <Button type="Emphasized" text="New Log"/>
+                <Button type="Emphasized" text="New Log" press="handleOpenLogDialog"/>
             </OverflowToolbar>
         </footer>
     </Page>

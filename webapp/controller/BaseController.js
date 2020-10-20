@@ -1,11 +1,6 @@
 sap.ui.define(
-  [
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/core/UIComponent",
-    "sap/ui/core/routing/History",
-    "sap/ui/core/Fragment",
-  ],
-  function (Controller, UIComponent, History, Fragment) {
+  ["sap/ui/core/mvc/Controller", "sap/ui/core/UIComponent"],
+  function (Controller, UIComponent) {
     "use strict";
 
     return Controller.extend("fmi.Eco.controller.BaseController", {
@@ -20,6 +15,9 @@ sap.ui.define(
       },
       getResourceBundle: function () {
         return this.getOwnerComponent().getModel("i18n").getResourceBundle();
+      },
+      closeDialog: function (oEvent) {
+        oEvent.getSource().getParent().close();
       },
     });
   }

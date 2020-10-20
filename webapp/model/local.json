@@ -12,5 +12,15 @@
       },
       { "title": "Tips & Info", "icon": "sap-icon://hint", "key": "misc" }
     ]
+  },
+  "loginData": {
+    "email": "",
+    "password": ""
+  },
+  "signupData": {
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "password": ""
   }
 }
