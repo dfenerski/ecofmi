@@ -73,6 +73,7 @@ sap.ui.define(
                   oLogData.file.contentType
                 );
                 oLog.url = sUrl;
+                oLog.contentType = oLogData.file.contentType;
                 bOk = true;
               })
               .catch((oErr) => {
@@ -109,6 +110,33 @@ sap.ui.define(
             sap.ui.core.BusyIndicator.hide();
             MessageBox.error("The following error occured: " + oErr.message);
           });
+      },
+      handleOpenEditDialog: function (oEvent) {
+        const sKey = oEvent.getSource().getCustomData()[0].getValue();
+        if (!this.viewData.editLogDialog) {
+          Fragment.load({
+            name: "fmi.Eco.fragment.EditLog",
+            id: this.getView().getId(),
+            controller: this,
+          }).then((oFragment) => {
+            this.getView().addDependent(oFragment);
+            this.viewData.editLogDialog = oFragment;
+            const oLocal = this.getModel("local");
+            const aLogs = oLocal.getProperty("/userLogs");
+            let sPath = "/userLogs/";
+            sPath += aLogs.indexOf(aLogs.find((oLog) => oLog.id === sKey));
+            sPath += "/";
+            this.viewData.editLogDialog.setBindingContext(
+              new sap.ui.model.Context(oLocal, sPath),
+              "local"
+            );
+            this.viewData.editLogDialog.getCustomData()[0].setValue(sKey);
+            this.viewData.editLogDialog.open();
+          });
+        } else {
+          this.viewData.editLogDialog.getCustomData()[0].setValue(sKey);
+          this.viewData.editLogDialog.open();
+        }
       },
       handleDeleteLogRequest: function (oEvent) {
         const sKey = oEvent.getSource().getCustomData()[0].getValue();

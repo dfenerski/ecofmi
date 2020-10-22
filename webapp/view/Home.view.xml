@@ -27,7 +27,11 @@
                         </VBox>
                         <OverflowToolbar design="Solid">
                             <ToolbarSpacer />
-                            <Button icon="sap-icon://edit" type="Transparent" press="handleOpenEditDialog" />
+                            <Button icon="sap-icon://edit" type="Transparent" press="handleOpenEditDialog">
+                                <customData>
+                                    <core:CustomData key="logId" value="{local>id}"/>
+                                </customData>
+                            </Button>
                             <Button icon="sap-icon://delete" type="Transparent" press="handleDeleteLogRequest">
                                 <customData>
                                     <core:CustomData key="logId" value="{local>id}"/>
