@@ -25,6 +25,7 @@
   },
   "newLogData": {
     "timestamp": 0,
+    "message": "",
     "file": {
       "contentType": "",
       "data": null

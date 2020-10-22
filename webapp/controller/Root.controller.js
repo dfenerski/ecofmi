@@ -16,6 +16,7 @@ sap.ui.define(
       },
       onInit: function () {
         this.attachAuthListener();
+        this.addPrototypes();
       },
       attachAuthListener: function () {
         const oAuth = this.getModel("firebase").getObject("/auth");
@@ -47,6 +48,11 @@ sap.ui.define(
             });
           }
         });
+      },
+      addPrototypes: function () {
+        String.prototype.capitalize = function () {
+          return this.charAt(0).toUpperCase() + this.slice(1);
+        };
       },
       toggleMenuExpanded: function () {
         this.getModel("local").setProperty(

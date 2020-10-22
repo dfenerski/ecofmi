@@ -7,7 +7,7 @@
     <Page showHeader="false">
         <content>
             <MessagePage showHeader="false" visible="{= ${local>/userLogs}.length === 0 }" icon="sap-icon://e-care" text="Create your first Eco-Log!" description="Use the button below."/>
-            <f:GridList headerText="My Logs" visible="{= ${local>/userLogs}.length > 0 }" items="{local>/userLogs}">
+            <f:GridList class="sapUiTinyMargin" headerText="My Logs" visible="{= ${local>/userLogs}.length > 0 }" items="{local>/userLogs}">
                 <f:customLayout>
                     <grid:GridBoxLayout boxWidth="17.5rem" />
                 </f:customLayout>
@@ -18,18 +18,21 @@
                         </layoutData>
                         <VBox renderType="Bare" class="sapUiSmallMargin">
                             <HBox justifyContent="SpaceBetween">
-                                <core:Icon src="sap-icon://e-leaf" size="2.625rem" color="Default" class="sapUiTinyMarginBottom" />
-                                <ObjectStatus text="Log confirmed" state="Success" />
+                                <core:Icon src="sap-icon://e-care" size="2rem" color="Default" class="sapUiTinyMarginBottom" />
+                                <ObjectStatus text="{= ${local>status}.capitalize() }" state="{path: 'local>status', formatter: '.formatter.getStatusState'}" />
                             </HBox>
                             <Title text="Log" wrapping="true" />
-                            <Label text="19.10.2020" wrapping="true" class="sapUiTinyMarginBottom" />
-                            <Text text="Your Eco-Log has been confirmed. 20 Points have been awared to your account" wrapping="true" />
+                            <Label text="{path: 'local>timestamp', formatter: '.formatter.getDateFromStamp'}" wrapping="true" class="sapUiTinyMarginBottom" />
+                            <Text text="{parts:[{path: 'local>status'},{path: 'local>points'}], formatter: '.formatter.getStatusMessage'}" wrapping="true" />
                         </VBox>
                         <OverflowToolbar design="Solid">
                             <ToolbarSpacer />
-                            <Button enabled="false" icon="sap-icon://edit" type="Transparent" />
-                            <Button enabled="false" icon="sap-icon://delete" type="Transparent" />
-                            <Button enabled="false" icon="sap-icon://message-information" type="Transparent" />
+                            <Button icon="sap-icon://edit" type="Transparent" press="handleOpenEditDialog" />
+                            <Button icon="sap-icon://delete" type="Transparent" press="handleDeleteLogRequest">
+                                <customData>
+                                    <core:CustomData key="logId" value="{local>id}"/>
+                                </customData>
+                            </Button>
                         </OverflowToolbar>
                     </VBox>
                 </f:GridListItem>

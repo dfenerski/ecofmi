@@ -6,8 +6,10 @@
     <Dialog title="Add new log" draggable="true" resizable="true">
         <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
             <form:content>
-                <Label text="Chooose video to upload"/>
+                <Label text="Choose video to upload" required="true"/>
                 <u:FileUploader tooltip="Upload" uploadComplete="handleLogUpload" uploadOnChange="true"/>
+                <Label text="Add message"/>
+                <TextArea value="{local>/newLogData/message}" placeholder="Add optional video description, explanation or message." rows="4"/>
             </form:content>
         </form:SimpleForm>
         <beginButton>
