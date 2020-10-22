@@ -1,9 +1,15 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/ui/core/UIComponent"],
-  function (Controller, UIComponent) {
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/UIComponent",
+    "../util/formatter",
+  ],
+  function (Controller, UIComponent, formatter) {
     "use strict";
 
     return Controller.extend("fmi.Eco.controller.BaseController", {
+      formatter: formatter,
+
       getRouter: function () {
         return UIComponent.getRouterFor(this);
       },

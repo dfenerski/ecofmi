@@ -22,5 +22,19 @@
     "lastName": "",
     "email": "",
     "password": ""
-  }
+  },
+  "newLogData": {
+    "timestamp": 0,
+    "file": {
+      "contentType": "",
+      "data": null
+    }
+  },
+  "userData": {
+    "id": null,
+    "firstName": "",
+    "lastName": "",
+    "email": ""
+  },
+  "userLogs": []
 }

@@ -1,18 +1,50 @@
 sap.ui.define(
-  ["./BaseController", "sap/ui/core/Fragment", "sap/m/MessageBox"],
-  function (BaseController, Fragment, MessageBox) {
+  [
+    "./BaseController",
+    "../util/CollectionListeners",
+    "sap/ui/core/Fragment",
+    "sap/m/MessageBox",
+  ],
+  function (BaseController, Listeners, Fragment, MessageBox) {
     "use strict";
 
     return BaseController.extend("fmi.Eco.controller.Root", {
       viewData: {
         logInDialog: null,
         signUpDialog: null,
+        subscribedListeners: [],
       },
       onInit: function () {
-        var oAuth = this.getModel("firebase").getObject("/auth");
-        oAuth.onAuthStateChanged(function (oUser) {
+        this.attachAuthListener();
+      },
+      attachAuthListener: function () {
+        const oAuth = this.getModel("firebase").getObject("/auth");
+        const oLocal = this.getModel("local");
+        oAuth.onAuthStateChanged((oUser) => {
           if (oUser) {
+            const oDB = this.getModel("firebase").getObject("/firestore");
+            oDB
+              .collection("users")
+              .doc(oUser.uid)
+              .get()
+              .then(function (oSnapshot) {
+                const oData = oSnapshot.data();
+                oData.id = oUser.uid;
+                oLocal.setProperty("/userData", oData);
+              })
+              .then(() => {
+                Promise.all([Listeners.userLogs.call(this)]).then(
+                  (aResponses) => {
+                    aResponses.forEach((oRes) => {
+                      this.viewData.subscribedListeners.push(oRes);
+                    });
+                  }
+                );
+              });
           } else {
+            this.viewData.subscribedListeners.forEach((fnListener) => {
+              fnListener();
+            });
           }
         });
       },
@@ -80,7 +112,7 @@ sap.ui.define(
             sap.ui.core.BusyIndicator.hide();
           });
       },
-      handleSignUpSubmited: function () {
+      handleSignUpSubmited: function (oEvent) {
         const oDialog = oEvent.getSource().getParent();
         const oLocal = this.getModel("local");
         const oData = oLocal.getProperty("/signupData");
@@ -102,11 +134,22 @@ sap.ui.define(
                 lastName: oData.lastName,
                 firstName: oData.firstName,
                 email: oData.email,
+                points: 0,
               })
               .then(function () {
                 oDialog.close();
                 sap.ui.core.BusyIndicator.hide();
+              })
+              .catch(function (oErr) {
+                sap.ui.core.BusyIndicator.hide();
+                MessageBox.error(
+                  "The following error occured: " + oErr.message
+                );
               });
+          })
+          .catch(function (oErr) {
+            sap.ui.core.BusyIndicator.hide();
+            MessageBox.error("The following error occured: " + oErr.message);
           });
       },
     });

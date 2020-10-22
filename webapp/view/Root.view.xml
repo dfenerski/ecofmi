@@ -7,7 +7,7 @@
 			<pages>
 				<tnt:ToolPage id="rootPage">
 					<tnt:header>
-						<tnt:ToolHeader visible="false">
+						<tnt:ToolHeader visible="{= ${local>/userData/id} !== null}">
 							<Button icon="sap-icon://menu2" type="Transparent" press="toggleMenuExpanded">
 								<layoutData>
 									<OverflowToolbarLayoutData priority="NeverOverflow" />
@@ -20,7 +20,7 @@
 						</tnt:ToolHeader>
 					</tnt:header>
 					<tnt:sideContent>
-						<tnt:SideNavigation visible="false" expanded="{local>/menu/expanded}">
+						<tnt:SideNavigation visible="{= ${local>/userData/id} !== null}" expanded="{local>/menu/expanded}">
 							<tnt:NavigationList items="{local>/menu/items}">
 								<tnt:NavigationListItem text="{local>title}" icon="{local>icon}" key="{local>key}"/>
 							</tnt:NavigationList>
@@ -30,12 +30,12 @@
 						</tnt:SideNavigation>
 					</tnt:sideContent>
 					<tnt:mainContents>
-						<NavContainer id="rootNavigator" visible="false">
+						<NavContainer id="rootNavigator" visible="{= ${local>/userData/id} !== null}">
 							<pages>
 								<!--added by router-->
 							</pages>
 						</NavContainer>
-						<MessagePage showHeader="false" text="Log In or Sign Up" enableFormattedText="true" description="An account is required in order to access the full gama of features." icon="sap-icon://visits">
+						<MessagePage visible="{= ${local>/userData/id} === null}" showHeader="false" text="Log In or Sign Up" enableFormattedText="true" description="An account is required in order to access the full gama of features." icon="sap-icon://visits">
 							<buttons>
 								<Button text="Log In" type="Emphasized" press="handleLogInDialogOpen" />
 								<Button text="Sign Up" type="Emphasized" press="handleSignUpDialogOpen" />
