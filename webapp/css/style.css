@@ -1,1 +1,9 @@
 /* Enter your custom styles here */
+
+.vjs-big-play-button {
+  display: none !important;
+}
+video[poster] {
+  width: 100% !important;
+  height: auto !important;
+}

@@ -2,7 +2,7 @@
     xmlns:core="sap.ui.core"
     xmlns="sap.m"
     xmlns:x="fmi.Eco.lib.controls">
-    <Dialog title="Log" draggable="true" resizable="true">
+    <Dialog title="Log" draggable="true">
         <x:Video url="{local>url}" contentType="{local>contentType}"/>
         <customData>
             <core:CustomData key="logId" />

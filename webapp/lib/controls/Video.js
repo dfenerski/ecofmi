@@ -1,7 +1,7 @@
 sap.ui.define(["sap/ui/core/Control", "../video/video"], function (Control) {
   "use strict";
   const oControl = Control.extend("fmi.Eco.lib.controls.Video", {
-    oModel: null,
+    player: null,
     metadata: {
       properties: {
         url: {
@@ -18,17 +18,22 @@ sap.ui.define(["sap/ui/core/Control", "../video/video"], function (Control) {
         },
         height: {
           type: "string",
-          defaultValue: "",
+          defaultValue: "400",
         },
         width: {
           type: "string",
-          defaultValue: "",
+          defaultValue: "400",
         },
         poster: {
           type: "string",
-          defaultValue: "/asset/video-placeholder.png",
+          defaultValue: "asset/video-placeholder.png",
         },
       },
+    },
+    onAfterRendering: function () {
+      Control.prototype.onAfterRendering.apply(this, arguments);
+      this.player = videojs(this.getId());
+      // this.player.fill(true);
     },
     renderer: {
       apiVersion: 2,
@@ -38,8 +43,8 @@ sap.ui.define(["sap/ui/core/Control", "../video/video"], function (Control) {
           .class("video-js")
           .attr("controls")
           .attr("preload", "auto")
-          .attr("width", "400")
-          .attr("height", "400")
+          // .attr("width", oControl.getWidth())
+          // .attr("height", oControl.getHeight())
           .attr("poster", oControl.getPoster())
           .attr("data-setup", "{}")
           .openEnd();
@@ -48,17 +53,17 @@ sap.ui.define(["sap/ui/core/Control", "../video/video"], function (Control) {
           .attr("src", oControl.getUrl())
           .attr("type", oControl.getContentType())
           .voidEnd();
-        oRm.openStart("p").class("vjs-no-js").openEnd();
-        oRm.text(
-          "To view this video please enable JavaScript, and consider upgrading to a web browser that"
-        );
-        oRm
-          .openStart("a")
-          .attr("href", "https://videojs.com/html5-video-support/")
-          .attr("target", "_blank");
-        oRm.text("supports HTML5 video");
-        oRm.close("a");
-        oRm.close("p");
+        // oRm.openStart("p").class("vjs-no-js").openEnd();
+        // oRm.text(
+        //   "To view this video please enable JavaScript, and consider upgrading to a web browser that"
+        // );
+        // oRm
+        //   .openStart("a")
+        //   .attr("href", "https://videojs.com/html5-video-support/")
+        //   .attr("target", "_blank");
+        // oRm.text("supports HTML5 video");
+        // oRm.close("a");
+        // oRm.close("p");
         oRm.close("video");
       },
     },
