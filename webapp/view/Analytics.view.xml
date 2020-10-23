@@ -29,7 +29,7 @@
                         <CarouselLayout visiblePagesCount="{= ${device>/system/phone} ? 1 : 3 }" />
                     </customLayout>
                     <pages>
-                        <x:HighChart chartId="{local>chartId}" type="{local>type}" theme="{local>theme}" title="{local>title}" description="{local>description}" dataPreset="{local>dataPreset}" />
+                        <x:Highchart chartId="{local>chartId}" type="{local>type}" theme="{local>theme}" title="{local>title}" description="{local>description}" dataPreset="{local>dataPreset}" />
                     </pages>
                 </Carousel>
             </ScrollContainer>
