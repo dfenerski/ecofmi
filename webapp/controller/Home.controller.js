@@ -174,6 +174,9 @@ sap.ui.define(
           },
         });
       },
+      handleAddLogMessage: function (oEvent) {
+        const sMsg = oEvent.getParameter("value");
+      }
     });
   }
 );

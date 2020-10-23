@@ -4,11 +4,11 @@
   display: none !important;
 }
 .phonePlayerWidth {
-  width: 80vw !important;
-  height: 50vh !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .nonphonePlayerWidth {
-  width: 50vw !important;
-  height: 40vh !important;
+  width: 100% !important;
+  height: 100% !important;
 }
