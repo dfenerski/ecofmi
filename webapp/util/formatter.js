@@ -42,6 +42,15 @@ sap.ui.define([], function () {
     },
     getUserRankedLeader: function (aUsers, sId) {
       return aUsers[0].id === sId;
+    },
+    getApprovedLogs: function (aData) {
+      return aData.filter(el => el.status === "approved").length
+    },
+    getPendingLogs: function (aData) {
+      return aData.filter(el => el.status === "pending").length
+    },
+    getRejectedLogs: function (aData) {
+      return aData.filter(el => el.status === "rejected").length
     }
   };
 

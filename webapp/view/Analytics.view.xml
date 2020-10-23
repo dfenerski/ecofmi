@@ -1,29 +1,35 @@
-<mvc:View controllerName="fmi.Eco.controller.Analytics"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+<mvc:View controllerName="fmi.Eco.controller.Analytics" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:x="fmi.Eco.lib.controls">
     <Page showHeader="false">
         <content>
             <HeaderContainer class="sapUiTinyMarginTop sapUiLargeMarginBottom">
-                <!-- <SearchField enabled="false" class="sapUiSmallMarginTop" /> -->
-                <VBox alignItems="End">
-                    <NumericContent value="" valueColor="Neutral" />
-                    <Text text="" />
+                <VBox renderType="Bare">
+                    <NumericContent value="{local>/userData/points}" valueColor="Good" />
+                    <Text text="Total points earned" />
                 </VBox>
-                <VBox alignItems="End">
-                    <NumericContent value="" valueColor="Error" />
-                    <Text text="" />
+                <VBox renderType="Bare">
+                    <NumericContent value="{= ${local>/userLogs}.length}" valueColor="Neutral" />
+                    <Text text="Total logs submitted" />
                 </VBox>
-                <VBox alignItems="End">
-                    <NumericContent value="" valueColor="Good" />
-                    <Text text="" />
+                <VBox renderType="Bare">
+                    <NumericContent value="{path: 'local>/userLogs', formatter: '.formatter.getApprovedLogs'}" valueColor="Good" />
+                    <Text text="Total logs approved" />
+                </VBox>
+                <VBox renderType="Bare">
+                    <NumericContent value="{path: 'local>/userLogs', formatter: '.formatter.getPendingLogs'}" valueColor="Critical" />
+                    <Text text="Total logs pending" />
+                </VBox>
+                <VBox renderType="Bare">
+                    <NumericContent value="{path: 'local>/userLogs', formatter: '.formatter.getRejectedLogs'}" valueColor="Error" />
+                    <Text text="Total logs rejected" />
                 </VBox>
             </HeaderContainer>
             <ScrollContainer>
-                <Carousel id="mainBoard" height="100%">
+                <Carousel>
                     <customLayout>
-                        <CarouselLayout visiblePagesCount="{= ${device>/system/phone}? 1 : 3 }" />
+                        <CarouselLayout visiblePagesCount="{= ${device>/system/phone} ? 1 : 3 }" />
                     </customLayout>
                     <pages>
+                        <x:HighChart chartId="{local>chartId}" type="{local>type}" theme="{local>theme}" title="{local>title}" description="{local>description}" dataPreset="{local>dataPreset}" />
                     </pages>
                 </Carousel>
             </ScrollContainer>
