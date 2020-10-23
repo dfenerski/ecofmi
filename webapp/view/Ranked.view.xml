@@ -1,18 +1,13 @@
-<mvc:View controllerName="fmi.Eco.controller.Ranked"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+<mvc:View controllerName="fmi.Eco.controller.Ranked" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
     <Page showHeader="false">
         <content>
-            <List items="" headerText="Top Eco Scorers">
-                <ObjectListItem title="" type="Active" press="" number="" numberUnit="Points">
+            <List items="{local>/rankedUsers}" headerText="Top Eco Scorers">
+                <ObjectListItem title="{parts: [{path: 'local>firstName'}, {path: 'local>lastName'}], formatter: '.formatter.getUserFullName' }" number="{local>points}" numberUnit="Points">
                     <firstStatus>
-                        <ObjectStatus text="{Status}" state="{
-						path: 'Status',
-						formatter: 'sap.m.sample.ObjectListItem.Formatter.status'
-					}" />
+                        <ObjectStatus visible="{parts: [{path: 'local>/rankedUsers'}, {path: 'local>id'}], formatter: '.formatter.getUserRankedLeader'}" text="Leader" state="Success" />
                     </firstStatus>
-                    <ObjectAttribute text="" />
-                    <ObjectAttribute text="" />
+                    <ObjectAttribute visible="false" text="Attr1" />
+                    <ObjectAttribute visible="false" text="Attr2" />
                 </ObjectListItem>
             </List>
         </content>

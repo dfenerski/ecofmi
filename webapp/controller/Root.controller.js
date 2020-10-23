@@ -34,7 +34,7 @@ sap.ui.define(
                 oLocal.setProperty("/userData", oData);
               })
               .then(() => {
-                Promise.all([Listeners.userLogs.call(this)]).then(
+                Promise.all([Listeners.userLogs.call(this), Listeners.rankedUsers.call(this)]).then(
                   (aResponses) => {
                     aResponses.forEach((oRes) => {
                       this.viewData.subscribedListeners.push(oRes);
