@@ -25,6 +25,9 @@ sap.ui.define(
       closeDialog: function (oEvent) {
         oEvent.getSource().getParent().close();
       },
+      navTo: function (sRoute) {
+        return this.getRouter().navTo(sRoute);
+      },
     });
   }
 );

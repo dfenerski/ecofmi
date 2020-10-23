@@ -16,12 +16,12 @@
 							<ToolbarSpacer width="20px" />
 							<ToolbarSpacer />
 							<Avatar displaySize="XS" />
-							<Button icon="sap-icon://grid" type="Transparent" />
+							<!-- <Button icon="sap-icon://grid" type="Transparent" /> -->
 						</tnt:ToolHeader>
 					</tnt:header>
 					<tnt:sideContent>
-						<tnt:SideNavigation visible="{= ${local>/userData/id} !== null}" expanded="{local>/menu/expanded}">
-							<tnt:NavigationList items="{local>/menu/items}">
+						<tnt:SideNavigation visible="{= ${local>/userData/id} !== null}" expanded="true" selectedKey="{local>/menu/currentView}" itemSelect="handleMenuNav">
+							<tnt:NavigationList items="{local>/menu/items}" expanded="true">
 								<tnt:NavigationListItem text="{local>title}" icon="{local>icon}" key="{local>key}"/>
 							</tnt:NavigationList>
 							<tnt:fixedItem>

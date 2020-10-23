@@ -55,10 +55,25 @@ sap.ui.define(
         };
       },
       toggleMenuExpanded: function () {
-        this.getModel("local").setProperty(
-          "/menu/expanded",
-          !this.getModel("local").getProperty("/menu/expanded")
-        );
+        const oToolPage = this.byId("rootPage");
+        oToolPage.setSideExpanded(!oToolPage.getSideExpanded());
+      },
+      handleMenuNav: function (oEvent) {
+        const sKey = oEvent.getParameter("item").getKey();
+        switch (sKey) {
+          case "home":
+            this.navTo("RouteHome");
+            break;
+          case "ranked":
+            this.navTo("RouteRanked");
+            break;
+          case "analytics":
+            this.navTo("RouteAnalytics");
+            break;
+          case "info":
+            this.navTo("RouteInfo");
+            break;
+        }
       },
       handleLogInDialogOpen: function () {
         if (!this.viewData.logInDialog) {

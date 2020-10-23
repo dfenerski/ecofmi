@@ -99,6 +99,21 @@
           "name": "RouteHome",
           "pattern": "home",
           "target": ["TargetHome"]
+        },
+        {
+          "name": "RouteRanked",
+          "pattern": "ranked",
+          "target": ["TargetRanked"]
+        },
+        {
+          "name": "RouteAnalytics",
+          "pattern": "analytics",
+          "target": ["TargetAnalytics"]
+        },
+        {
+          "name": "RouteInfo",
+          "pattern": "info",
+          "target": ["TargetInfo"]
         }
       ],
       "targets": {
@@ -115,6 +130,27 @@
           "clearControlAggregation": false,
           "viewId": "Home",
           "viewName": "Home"
+        },
+        "TargetRanked": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Ranked",
+          "viewName": "Ranked"
+        },
+        "TargetAnalytics": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Analytics",
+          "viewName": "Analytics"
+        },
+        "TargetInfo": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Info",
+          "viewName": "Info"
         }
       }
     }

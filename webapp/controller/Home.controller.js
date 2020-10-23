@@ -8,7 +8,11 @@ sap.ui.define(
         addLogDialog: null,
       },
       onInit: function () {
-        // if (sap.ui.Device.system.phone)
+        const oLocal = this.getOwnerComponent().getModel("local");
+        this.getRouter().attachRouteMatched("RouteHome", () => {
+          oLocal.setProperty("/menu/currentView", "home");
+        });
+        // if (sap.ui.Device.system.phone)+
       },
       handleOpenLogDialog: function () {
         if (!this.viewData.addLogDialog) {

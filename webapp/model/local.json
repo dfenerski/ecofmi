@@ -1,7 +1,7 @@
 {
   "eco": true,
   "menu": {
-    "expandend": true,
+    "currentView": "",
     "items": [
       { "title": "Home", "icon": "sap-icon://home", "key": "home" },
       { "title": "Hall of Fame", "icon": "sap-icon://badge", "key": "ranked" },
@@ -10,7 +10,7 @@
         "icon": "sap-icon://business-objects-experience",
         "key": "analytics"
       },
-      { "title": "Tips & Info", "icon": "sap-icon://hint", "key": "misc" }
+      { "title": "Tips & Info", "icon": "sap-icon://hint", "key": "info" }
     ]
   },
   "loginData": {
