@@ -1,5 +1,5 @@
 <core:FragmentDefinition height="100%" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:x="fmi.Eco.lib.controls">
-    <Dialog title="Log" draggable="true">
+    <Dialog id="editLogDialog" title="Log" draggable="true">
         <VBox renderType="Bare" fitContainer="true">
             <x:Video url="{local>url}" contentType="{local>contentType}" />
             <ScrollContainer horizontal="false" vertical="true" height="100%" width="100%">
@@ -8,7 +8,11 @@
                         <FeedListItem sender="{local>senderFullName}" timestamp="{local>timestamp}" text="{local>value}" />
                     </List>
                 </ScrollContainer>
-                <FeedInput post="handleAddLogMessage" />
+                <FeedInput post="handleAddLogMessage">
+                    <customData>
+                        <core:CustomData key="docId" value="{local>id}" />
+                    </customData>
+                </FeedInput>
             </ScrollContainer>
         </VBox>
         <customData>

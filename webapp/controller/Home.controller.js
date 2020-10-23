@@ -175,7 +175,24 @@ sap.ui.define(
         });
       },
       handleAddLogMessage: function (oEvent) {
+        const oUser = this.getModel("local").getProperty("/userData");
+        const oDialog = this.byId("editLogDialog");
+        const oData = oDialog.getBindingContext("local").getObject();
         const sMsg = oEvent.getParameter("value");
+        const dNow = new Date();
+        const oMsg = {
+          senderId: oUser.id,
+          senderFullName: `${oUser.firstName} ${oUser.lastName}`,
+          timestamp: dNow.getTime(),
+          value: sMsg,
+        };
+        const sKey = oEvent.getSource().getCustomData()[0].getValue();
+        const oDB = this.getModel("firebase").getObject("/firestore");
+        const oDocRef = oDB.collection("logs").doc(sKey);
+        oData.messages.push(oMsg);
+        return oDocRef.update({
+          messages: firebase.firestore.FieldValue.arrayUnion(oMsg)
+        });
       }
     });
   }
