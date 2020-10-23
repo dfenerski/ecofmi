@@ -3,7 +3,12 @@
 .vjs-big-play-button {
   display: none !important;
 }
-video[poster] {
-  width: 100% !important;
-  height: auto !important;
+.phonePlayerWidth {
+  width: 80vw !important;
+  height: 50vh !important;
+}
+
+.nonphonePlayerWidth {
+  width: 50vw !important;
+  height: 40vh !important;
 }

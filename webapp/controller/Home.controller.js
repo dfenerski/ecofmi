@@ -12,7 +12,6 @@ sap.ui.define(
         this.getRouter().attachRouteMatched("RouteHome", () => {
           oLocal.setProperty("/menu/currentView", "home");
         });
-        // if (sap.ui.Device.system.phone)+
       },
       handleOpenLogDialog: function () {
         if (!this.viewData.addLogDialog) {
@@ -135,6 +134,15 @@ sap.ui.define(
               "local"
             );
             this.viewData.editLogDialog.getCustomData()[0].setValue(sKey);
+            if (sap.ui.Device.system.phone) {
+              this.viewData.editLogDialog
+                .getContent()[0]
+                .addStyleClass("phonePlayerWidth");
+            } else {
+              this.viewData.editLogDialog
+                .getContent()[0]
+                .addStyleClass("nonphonePlayerWidth");
+            }
             this.viewData.editLogDialog.open();
           });
         } else {
