@@ -12,7 +12,7 @@ sap.ui.define(["./BaseController"], function (BaseController) {
       const oLocal = this.getModel("local");
       const oData = oLocal.getProperty("/newTipData");
       const oDB = this.getModel("firebase").getObject("/firestore");
-      oDB.collection("tips").add({ ...oData, points: 0 }).then(() => {
+      oDB.collection("tips").add({ ...oData, points: 0, voters: [] }).then(() => {
         sap.m.MessageToast.show("Tip added!");
       }).catch(() => {
         sap.m.MessageToast.show("Could not add tip!");

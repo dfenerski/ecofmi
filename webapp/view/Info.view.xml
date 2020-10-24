@@ -13,9 +13,17 @@
                         </HBox>
                         <HBox renderType="Bare">
                             <NumericContent class="sapUiSmallMarginEnd" value="{local>points}" scale="Upvotes" />
-                            <VBox renderType="Bare">
-                                <Button icon="sap-icon://arrow-top" type="Accept" tooltip="This is helpful" />
-                                <Button icon="sap-icon://arrow-bottom" type="Reject" tooltip="This is not helpful" />
+                            <VBox renderType="Bare" visible="{parts:[{path: 'local>/userData/id'}, {path: 'local>voters'}], formatter: '.formatter.getUserNotVoted'}">
+                                <Button icon="sap-icon://arrow-top" type="Accept" tooltip="This is helpful" press="handleTipVote($event, true)">
+                                    <customData>
+                                        <core:CustomData key="tipId" value="{local>id}" />
+                                    </customData>
+                                </Button>
+                                <Button icon="sap-icon://arrow-bottom" type="Reject" tooltip="This is not helpful" press="handleTipVote($event, false)">
+                                    <customData>
+                                        <core:CustomData key="tipId" value="{local>id}" />
+                                    </customData>
+                                </Button>
                             </VBox>
                         </HBox>
                     </HBox>

@@ -20,11 +20,10 @@ sap.ui.define([], function () {
     },
     getDateFromStamp: function (iTime) {
       const dVal = new Date(iTime);
-      return `${dVal.getDate() < 10 ? "0" + dVal.getDate() : dVal.getDate()}.${
-        dVal.getMonth() + 1 < 10
-          ? "0" + (dVal.getMonth() + 1)
-          : dVal.getMonth() + 1
-      }.${dVal.getFullYear()}`;
+      return `${dVal.getDate() < 10 ? "0" + dVal.getDate() : dVal.getDate()}.${dVal.getMonth() + 1 < 10
+        ? "0" + (dVal.getMonth() + 1)
+        : dVal.getMonth() + 1
+        }.${dVal.getFullYear()}`;
     },
     getStatusMessage: function (sStatus, iPoints) {
       switch (sStatus) {
@@ -53,6 +52,12 @@ sap.ui.define([], function () {
     getRejectedLogs: function (aData) {
       return aData.filter((el) => el.status === "rejected").length;
     },
+    getUserNotVoted: function (sId, aIds) {
+      if (!aIds) {
+        return false;
+      }
+      return !aIds.includes(sId);
+    }
   };
 
   return formatter;
