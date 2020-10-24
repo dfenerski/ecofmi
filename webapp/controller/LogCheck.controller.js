@@ -94,5 +94,26 @@ sap.ui.define(["./BaseController", "sap/ui/core/Fragment", "sap/m/MessageBox"], 
         messages: firebase.firestore.FieldValue.arrayUnion(oMsg),
       });
     },
+    handleLogFilterSelect: function (oEvent) {
+      const oTable = this.byId("logsTable");
+      const oBinding = oTable.getBinding("items");
+      const sKey = oEvent.getParameter("key");
+      switch (sKey) {
+        case "any":
+          oBinding.filter();
+          return;
+        case "approved":
+          oBinding.filter(new sap.ui.model.Filter("status", "EQ", "approved"));
+          return;
+        case "pending":
+          oBinding.filter(new sap.ui.model.Filter("status", "EQ", "pending"));
+          return;
+        case "rejected":
+          oBinding.filter(new sap.ui.model.Filter("status", "EQ", "rejected"));
+          return;
+      }
+
+
+    }
   });
 });

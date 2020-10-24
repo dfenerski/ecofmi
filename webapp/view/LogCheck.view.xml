@@ -1,17 +1,17 @@
 <mvc:View controllerName="fmi.Eco.controller.LogCheck" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:x="fmi.Eco.lib.controls">
     <Page showHeader="false">
         <content>
-            <IconTabBar>
+            <IconTabBar select="handleLogFilterSelect">
                 <items>
-                    <IconTabFilter showAll="true" count="50" text="Eco-Logs" key="any" />
+                    <IconTabFilter showAll="true" count="{= ${local>/logs}.length }" text="Eco-Logs" key="any" />
                     <IconTabSeparator />
-                    <IconTabFilter icon="sap-icon://accept" iconColor="Positive" count="10" text="Approved" key="approved" />
-                    <IconTabFilter icon="sap-icon://pending" iconColor="Critical" count="20" text="Pending" key="pending" />
-                    <IconTabFilter icon="sap-icon://decline" iconColor="Negative" count="30" text="Rejected" key="rejected" />
+                    <IconTabFilter icon="sap-icon://accept" iconColor="Positive" count="{path: 'local>/logs', formatter: '.formatter.getApprovedLogs' }" text="Approved" key="approved" />
+                    <IconTabFilter icon="sap-icon://pending" iconColor="Critical" count="{path: 'local>/logs', formatter: '.formatter.getPendingLogs' }" text="Pending" key="pending" />
+                    <IconTabFilter icon="sap-icon://decline" iconColor="Negative" count="{path: 'local>/logs', formatter: '.formatter.getRejectedLogs' }" text="Rejected" key="rejected" />
                 </items>
             </IconTabBar>
             <ScrollContainer vertical="false" horizontal="true" height="calc(100vh - 15px)">
-                <Table items="{local>/logs}" autoPopinMode="true">
+                <Table id="logsTable" items="{local>/logs}" autoPopinMode="true">
                     <columns>
                         <Column importance="High">
                             <Text text="Video" />
