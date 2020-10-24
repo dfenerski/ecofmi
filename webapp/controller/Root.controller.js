@@ -94,6 +94,12 @@ sap.ui.define(
           case "info":
             this.navTo("RouteInfo");
             break;
+          case "logcheck":
+            this.navTo("RouteLogCheck");
+            break;
+          case "tipadmin":
+            this.navTo("RouteTipAdmin");
+            break;
         }
       },
       handleLogInDialogOpen: function () {

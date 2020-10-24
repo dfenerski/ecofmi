@@ -1,0 +1,13 @@
+<mvc:View controllerName="fmi.Eco.controller.LogCheck"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page showHeader="false">
+        <content>
+            <List headerText="Review User Logs">
+                <CustomListItem>
+                </CustomListItem>
+            </List>
+        </content>
+    </Page>
+</mvc:View>

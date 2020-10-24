@@ -114,6 +114,16 @@
           "name": "RouteInfo",
           "pattern": "info",
           "target": ["TargetInfo"]
+        },
+        {
+          "name": "RouteLogCheck",
+          "pattern": "review",
+          "target": ["TargetLogCheck"]
+        },
+        {
+          "name": "RouteTipAdmin",
+          "pattern": "tipadmin",
+          "target": ["TargetTipAdmin"]
         }
       ],
       "targets": {
@@ -151,6 +161,20 @@
           "clearControlAggregation": false,
           "viewId": "Info",
           "viewName": "Info"
+        },
+        "TargetLogCheck": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "LogCheck",
+          "viewName": "LogCheck"
+        },
+        "TargetTipAdmin": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "TipAdmin",
+          "viewName": "TipAdmin"
         }
       }
     }

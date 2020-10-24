@@ -23,6 +23,16 @@
         "title": "Tips & Info",
         "icon": "sap-icon://hint",
         "key": "info"
+      },
+      {
+        "title": "Review Logs",
+        "icon": "sap-icon://inspection",
+        "key": "logcheck"
+      },
+      {
+        "title": "Manage Tips",
+        "icon": "sap-icon://bbyd-active-sales",
+        "key": "tipadmin"
       }
     ]
   },
