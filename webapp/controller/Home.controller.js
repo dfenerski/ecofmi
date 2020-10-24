@@ -146,6 +146,15 @@ sap.ui.define(
             this.viewData.editLogDialog.open();
           });
         } else {
+          const oLocal = this.getModel("local");
+          const aLogs = oLocal.getProperty("/userLogs");
+          let sPath = "/userLogs/";
+          sPath += aLogs.indexOf(aLogs.find((oLog) => oLog.id === sKey));
+          sPath += "/";
+          this.viewData.editLogDialog.setBindingContext(
+            new sap.ui.model.Context(oLocal, sPath),
+            "local"
+          );
           this.viewData.editLogDialog.getCustomData()[0].setValue(sKey);
           this.viewData.editLogDialog.open();
         }
@@ -191,9 +200,9 @@ sap.ui.define(
         const oDocRef = oDB.collection("logs").doc(sKey);
         oData.messages.push(oMsg);
         return oDocRef.update({
-          messages: firebase.firestore.FieldValue.arrayUnion(oMsg)
+          messages: firebase.firestore.FieldValue.arrayUnion(oMsg),
         });
-      }
+      },
     });
   }
 );
