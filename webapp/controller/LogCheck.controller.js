@@ -5,7 +5,7 @@ sap.ui.define(["./BaseController", "sap/ui/core/Fragment", "sap/m/MessageBox"], 
     viewData: { editLogDialog: null },
     onInit: function () {
       const oLocal = this.getOwnerComponent().getModel("local");
-      this.getRouter().attachRouteMatched("RouteLogCheck", () => {
+      this.getRouter().getRoute("RouteLogCheck").attachPatternMatched(() => {
         oLocal.setProperty("/menu/currentView", "logcheck");
       });
     },

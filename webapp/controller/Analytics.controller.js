@@ -7,8 +7,13 @@ sap.ui.define(["./BaseController", "../lib/controls/Highchart"], function (
   return BaseController.extend("fmi.Eco.controller.Analytics", {
     onInit: function () {
       const oLocal = this.getOwnerComponent().getModel("local");
-      this.getRouter().attachRouteMatched("RouteAnalytics", () => {
+      this.getRouter().getRoute("RouteAnalytics").attachPatternMatched(() => {
         oLocal.setProperty("/menu/currentView", "analytics");
+        try {
+          setTimeout(() => {
+            this.byId("chartCarousel").getPages().forEach((oChart) => oChart.chartConfig.reflow());
+          }, 500)
+        } catch (e) { }
       });
     },
     userChartsFactory: function (sIdSuffix, oContext) {

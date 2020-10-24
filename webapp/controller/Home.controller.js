@@ -9,7 +9,7 @@ sap.ui.define(
       },
       onInit: function () {
         const oLocal = this.getOwnerComponent().getModel("local");
-        this.getRouter().attachRouteMatched("RouteHome", () => {
+        this.getRouter().getRoute("RouteHome").attachPatternMatched(() => {
           oLocal.setProperty("/menu/currentView", "home");
         });
       },

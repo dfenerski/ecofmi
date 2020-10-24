@@ -1,7 +1,4 @@
-<mvc:View controllerName="fmi.Eco.controller.Root"
-	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-	xmlns="sap.m"
-	xmlns:tnt="sap.tnt">
+<mvc:View controllerName="fmi.Eco.controller.Root" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt">
 	<Shell id="rootShell" appWidthLimited="false">
 		<App id="rootApp">
 			<pages>
@@ -22,7 +19,7 @@
 					<tnt:sideContent>
 						<tnt:SideNavigation visible="{= ${local>/userData/id} !== null}" expanded="{= !${device>/system/phone} }" selectedKey="{local>/menu/currentView}" itemSelect="handleMenuNav">
 							<tnt:NavigationList items="{local>/menu/items}" expanded="{= !${device>/system/phone} }">
-								<tnt:NavigationListItem text="{local>title}" icon="{local>icon}" key="{local>key}"/>
+								<tnt:NavigationListItem text="{local>title}" icon="{local>icon}" key="{local>key}" />
 							</tnt:NavigationList>
 							<tnt:fixedItem>
 								<!-- <tnt:NavigationList /> -->
