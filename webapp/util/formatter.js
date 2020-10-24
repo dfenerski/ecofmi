@@ -20,10 +20,11 @@ sap.ui.define([], function () {
     },
     getDateFromStamp: function (iTime) {
       const dVal = new Date(iTime);
-      return `${dVal.getDate() < 10 ? "0" + dVal.getDate() : dVal.getDate()}.${dVal.getMonth() + 1 < 10
-        ? "0" + (dVal.getMonth() + 1)
-        : dVal.getMonth() + 1
-        }.${dVal.getFullYear()}`;
+      return `${dVal.getDate() < 10 ? "0" + dVal.getDate() : dVal.getDate()}.${
+        dVal.getMonth() + 1 < 10
+          ? "0" + (dVal.getMonth() + 1)
+          : dVal.getMonth() + 1
+      }.${dVal.getFullYear()}`;
     },
     getStatusMessage: function (sStatus, iPoints) {
       switch (sStatus) {
@@ -44,14 +45,14 @@ sap.ui.define([], function () {
       return aUsers[0].id === sId;
     },
     getApprovedLogs: function (aData) {
-      return aData.filter(el => el.status === "approved").length
+      return aData.filter((el) => el.status === "approved").length;
     },
     getPendingLogs: function (aData) {
-      return aData.filter(el => el.status === "pending").length
+      return aData.filter((el) => el.status === "pending").length;
     },
     getRejectedLogs: function (aData) {
-      return aData.filter(el => el.status === "rejected").length
-    }
+      return aData.filter((el) => el.status === "rejected").length;
+    },
   };
 
   return formatter;

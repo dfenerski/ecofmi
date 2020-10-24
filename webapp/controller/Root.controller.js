@@ -34,13 +34,15 @@ sap.ui.define(
                 oLocal.setProperty("/userData", oData);
               })
               .then(() => {
-                Promise.all([Listeners.userLogs.call(this), Listeners.rankedUsers.call(this)]).then(
-                  (aResponses) => {
-                    aResponses.forEach((oRes) => {
-                      this.viewData.subscribedListeners.push(oRes);
-                    });
-                  }
-                );
+                Promise.all([
+                  Listeners.userLogs.call(this),
+                  Listeners.rankedUsers.call(this),
+                ]).then((aResponses) => {
+                  oLocal.setProperty("/dataLoaded", true);
+                  aResponses.forEach((oRes) => {
+                    this.viewData.subscribedListeners.push(oRes);
+                  });
+                });
               });
           } else {
             this.viewData.subscribedListeners.forEach((fnListener) => {

@@ -1,5 +1,6 @@
 {
   "eco": true,
+  "dataLoaded": false,
   "menu": {
     "currentView": "",
     "items": [
@@ -50,5 +51,35 @@
     "email": ""
   },
   "userLogs": [],
-  "rankedUsers": []
+  "rankedUsers": [],
+  "userCharts": [
+    {
+      "chartId": "userChart1",
+      "type": "basicColumn",
+      "title": "Logs by Day",
+      "description": "Eco-Logs you have logged in the past days.",
+      "dataPreset": "logsByDay"
+    },
+    {
+      "chartId": "userChart2",
+      "type": "basicColumn",
+      "title": "Chart2",
+      "description": "Description2",
+      "dataPreset": "ptsByDay"
+    },
+    {
+      "chartId": "userChart3",
+      "type": "basicColumn",
+      "title": "Chart3",
+      "description": "Description3",
+      "dataPreset": "ptsByLog"
+    },
+    {
+      "chartId": "userChart4",
+      "type": "basicColumn",
+      "title": "Chart4",
+      "description": "Description4",
+      "dataPreset": "userComparison"
+    }
+  ]
 }

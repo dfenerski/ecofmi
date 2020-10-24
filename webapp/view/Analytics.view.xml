@@ -1,4 +1,7 @@
-<mvc:View controllerName="fmi.Eco.controller.Analytics" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:x="fmi.Eco.lib.controls">
+<mvc:View controllerName="fmi.Eco.controller.Analytics"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:x="fmi.Eco.lib.controls">
     <Page showHeader="false">
         <content>
             <HeaderContainer class="sapUiTinyMarginTop sapUiLargeMarginBottom">
@@ -24,13 +27,10 @@
                 </VBox>
             </HeaderContainer>
             <ScrollContainer>
-                <Carousel>
+                <Carousel pages="{path: 'local>/userCharts', factory: '.userChartsFactory'}">
                     <customLayout>
                         <CarouselLayout visiblePagesCount="{= ${device>/system/phone} ? 1 : 3 }" />
                     </customLayout>
-                    <pages>
-                        <x:Highchart chartId="{local>chartId}" type="{local>type}" theme="{local>theme}" title="{local>title}" description="{local>description}" dataPreset="{local>dataPreset}" />
-                    </pages>
                 </Carousel>
             </ScrollContainer>
         </content>
