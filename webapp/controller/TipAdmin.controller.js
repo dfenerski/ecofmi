@@ -8,5 +8,33 @@ sap.ui.define(["./BaseController"], function (BaseController) {
         oLocal.setProperty("/menu/currentView", "tipadmin");
       });
     },
+    handleNewTipSubmit: function () {
+      const oLocal = this.getModel("local");
+      const oData = oLocal.getProperty("/newTipData");
+      const oDB = this.getModel("firebase").getObject("/firestore");
+      oDB.collection("tips").add({ ...oData, points: 0 }).then(() => {
+        sap.m.MessageToast.show("Tip added!");
+      }).catch(() => {
+        sap.m.MessageToast.show("Could not add tip!");
+      }).finally(() => {
+        for (let sProp in oData) {
+          oData[sProp] = "";
+        }
+        oLocal.setProperty("/newTipData", oData);
+      });
+    },
+    handleDeleteTip: function (oEvent) {
+      const sKey = oEvent.getSource().getCustomData()[0].getValue();
+      const oDB = this.getModel("firebase").getObject("/firestore");
+      oDB
+        .collection("tips")
+        .doc(sKey)
+        .delete()
+        .then(function () {
+          sap.m.MessageToast.show("Tip deleted!");
+        }).catch(() => {
+          sap.m.MessageToast.show("Could not delete tip!");
+        });
+    }
   });
 });

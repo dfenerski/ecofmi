@@ -37,6 +37,7 @@ sap.ui.define(
                 Promise.all([
                   Listeners.userLogs.call(this),
                   Listeners.rankedUsers.call(this),
+                  Listeners.tips.call(this)
                 ]).then((aResponses) => {
                   oLocal.setProperty("/dataLoaded", true);
                   aResponses.forEach((oRes) => {

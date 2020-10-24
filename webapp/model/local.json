@@ -60,9 +60,13 @@
     "lastName": "",
     "email": ""
   },
+  "newTipData": {
+    "title": "",
+    "description": ""
+  },
   "userLogs": [],
   "rankedUsers": [],
-  "tips": [{}, {}, {}, {}],
+  "tips": [],
   "userCharts": [
     {
       "chartId": "userChart1",

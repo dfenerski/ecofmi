@@ -1,13 +1,43 @@
-<mvc:View controllerName="fmi.Eco.controller.TipAdmin"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core">
+<mvc:View controllerName="fmi.Eco.controller.TipAdmin" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
     <Page showHeader="false">
         <content>
-            <List headerText="Add or Remove Tips">
-                <CustomListItem>
-                </CustomListItem>
-            </List>
+            <ScrollContainer vertical="false" horizontal="true" height="calc(100vh - 315px)">
+                <Table items="{local>/tips}" autoPopinMode="true" headerText="Current listed tips">
+                    <columns>
+                        <Column importance="High">
+                            <Text text="Tip Title" />
+                        </Column>
+                        <Column importance="High">
+                            <Text text="Tip Description" />
+                        </Column>
+                        <Column hAlign="End" importance="Medium">
+                            <Text text="Delete" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{local>title}" />
+                                <Text text="{local>description}" />
+                                <Button type="Transparent" icon="sap-icon://delete" press="handleDeleteTip">
+                                    <customData>
+                                        <core:CustomData key="docId" value="{local>id}" />
+                                    </customData>
+                                </Button>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+            <VBox renderType="Bare">
+                <form:SimpleForm title="Add New Tip" editable="true" layout="ResponsiveGridLayout">
+                    <Label text="Tip title" required="true" />
+                    <Input placeholder="Describe what the tip is about" value="{local>/newTipData/title}" />
+                    <Label text="Tip description" required="true" />
+                    <TextArea placeholder="More information or explanations about the tip" rows="4" value="{local>/newTipData/description}" />
+                </form:SimpleForm>
+                <Button type="Emphasized" text="Add tip" press="handleNewTipSubmit" />
+            </VBox>
         </content>
     </Page>
 </mvc:View>

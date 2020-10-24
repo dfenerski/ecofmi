@@ -1,24 +1,21 @@
-<mvc:View controllerName="fmi.Eco.controller.Info"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core">
+<mvc:View controllerName="fmi.Eco.controller.Info" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core">
     <Page showHeader="false">
         <content>
             <List items="{local>/tips}" headerText="Latest News and Tips">
                 <CustomListItem>
                     <HBox renderType="Bare" justifyContent="SpaceBetween">
                         <HBox renderType="Bare">
-                            <core:Icon src="sap-icon://e-care" size="250%" class="sapUiSmallMarginTop sapUiTinyMarginBegin" color="Positive"/>
-                            <VBox renderType="Bare">
-                                <Title text="{local>title}"/>
-                                <Text text="{local>description}"/>
+                            <core:Icon src="sap-icon://e-care" size="250%" class="sapUiSmallMarginTop sapUiTinyMarginBegin" color="Positive" />
+                            <VBox renderType="Bare" class="sapUiTinyMarginBegin sapUiSmallMarginTop">
+                                <Title text="{local>title}" />
+                                <Text text="{local>description}" />
                             </VBox>
                         </HBox>
                         <HBox renderType="Bare">
                             <NumericContent class="sapUiSmallMarginEnd" value="{local>points}" scale="Upvotes" />
                             <VBox renderType="Bare">
-                                <Button icon="sap-icon://arrow-top" type="Accept" tooltip="This is helpful"/>
-                                <Button icon="sap-icon://arrow-bottom" type="Reject" tooltip="This is not helpful"/>
+                                <Button icon="sap-icon://arrow-top" type="Accept" tooltip="This is helpful" />
+                                <Button icon="sap-icon://arrow-bottom" type="Reject" tooltip="This is not helpful" />
                             </VBox>
                         </HBox>
                     </HBox>
