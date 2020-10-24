@@ -12,6 +12,16 @@ sap.ui.define(
         this.getRouter().getRoute("RouteHome").attachPatternMatched(() => {
           oLocal.setProperty("/menu/currentView", "home");
         });
+        this.testClassification();
+      },
+      testClassification: function () {
+        let img = loadImage("https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Can%28Easy_Open_Can%29.JPG/360px-Can%28Easy_Open_Can%29.JPG");
+        setTimeout(() => {
+          classifier.classify(img).then((oRes) => {
+            console.log(oRes);
+          });
+        }, 500)
+
       },
       handleOpenLogDialog: function () {
         if (!this.viewData.addLogDialog) {
