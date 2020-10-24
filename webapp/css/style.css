@@ -3,12 +3,3 @@
 .vjs-big-play-button {
   display: none !important;
 }
-.phonePlayerWidth {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.nonphonePlayerWidth {
-  width: 100% !important;
-  height: 100% !important;
-}

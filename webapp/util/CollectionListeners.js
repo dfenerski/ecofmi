@@ -67,6 +67,27 @@ sap.ui.define([], function () {
             resolve(oRef);
           });
       });
+    },
+    logs: function () {
+      const oFirebase = this.getModel("firebase");
+      const oDB = oFirebase.getObject("/firestore");
+      const oLocal = this.getModel("local");
+      return new Promise(function (resolve) {
+        const oRef = oDB
+          .collection("logs")
+          .orderBy("timestamp", "desc")
+          .onSnapshot(function (oSnapshot) {
+            const aData = [];
+            let oEntry = {};
+            oSnapshot.docs.forEach((oDoc) => {
+              oEntry = oDoc.data();
+              oEntry.id = oDoc.id;
+              aData.push(oEntry);
+            });
+            oLocal.setProperty("/logs", aData);
+            resolve(oRef);
+          });
+      });
     }
   };
 
