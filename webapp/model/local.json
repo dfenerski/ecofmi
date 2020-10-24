@@ -52,6 +52,7 @@
   },
   "userLogs": [],
   "rankedUsers": [],
+  "tips": [{}, {}, {}, {}],
   "userCharts": [
     {
       "chartId": "userChart1",

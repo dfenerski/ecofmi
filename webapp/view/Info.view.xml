@@ -1,22 +1,27 @@
 <mvc:View controllerName="fmi.Eco.controller.Info"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
     <Page showHeader="false">
         <content>
-            <List items="" headerText="Latest News and Tips">
+            <List items="{local>/tips}" headerText="Latest News and Tips">
                 <CustomListItem>
-                    <SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" transitionTime="250" displayTime="2500">
-                        <GenericTile backgroundImage="" frameType="TwoByOne" press="pressOnTileOne">
-                            <TileContent footer="August 21, 2016">
-                                <NewsContent contentText="" subheader="Today, SAP News" />
-                            </TileContent>
-                        </GenericTile>
-                        <GenericTile backgroundImage="" frameType="TwoByOne" state="Failed">
-                            <TileContent footer="August 21, 2016">
-                                <NewsContent contentText="" subheader="Today, SAP News" />
-                            </TileContent>
-                        </GenericTile>
-                    </SlideTile>
+                    <HBox renderType="Bare" justifyContent="SpaceBetween">
+                        <HBox renderType="Bare">
+                            <core:Icon src="sap-icon://e-care" size="250%" class="sapUiSmallMarginTop sapUiTinyMarginBegin" color="Positive"/>
+                            <VBox renderType="Bare">
+                                <Title text="{local>title}"/>
+                                <Text text="{local>description}"/>
+                            </VBox>
+                        </HBox>
+                        <HBox renderType="Bare">
+                            <NumericContent class="sapUiSmallMarginEnd" value="{local>points}" scale="Upvotes" />
+                            <VBox renderType="Bare">
+                                <Button icon="sap-icon://arrow-top" type="Accept" tooltip="This is helpful"/>
+                                <Button icon="sap-icon://arrow-bottom" type="Reject" tooltip="This is not helpful"/>
+                            </VBox>
+                        </HBox>
+                    </HBox>
                 </CustomListItem>
             </List>
         </content>
