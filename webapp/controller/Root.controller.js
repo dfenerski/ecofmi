@@ -59,6 +59,25 @@ sap.ui.define(
       toggleMenuExpanded: function () {
         const oToolPage = this.byId("rootPage");
         oToolPage.setSideExpanded(!oToolPage.getSideExpanded());
+        if (
+          oToolPage
+            .getMainContents()[0]
+            .getCurrentPage()
+            .getControllerName() === "fmi.Eco.controller.Analytics"
+        ) {
+          setTimeout(() => {
+            try {
+              oToolPage
+                .getMainContents()[0]
+                .getCurrentPage()
+                .byId("chartCarousel")
+                .getPages()
+                .forEach((oChart) => oChart.chartConfig.reflow());
+            } catch (e) {
+              console.warn(e);
+            }
+          }, 500);
+        }
       },
       handleMenuNav: function (oEvent) {
         const sKey = oEvent.getParameter("item").getKey();

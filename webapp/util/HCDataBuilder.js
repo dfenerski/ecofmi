@@ -42,9 +42,6 @@ sap.ui.define(["./formatter"], function (formatter) {
         }
       });
       const aVals = [];
-      const fnReducer = (accumulator, currentValue) => {
-        return accumulator.points + currentValue.points;
-      };
       for (let i = 0; i < aDates.length; i++) {
         const aCurr = aLogs.filter(
           (oLog) => formatter.getDateFromStamp(oLog.timestamp) === aDates[i]
@@ -63,18 +60,28 @@ sap.ui.define(["./formatter"], function (formatter) {
       oData.series = aVals;
       return oData;
     },
-    ptsByLog: (oLocal) => {
-      const oData = {
-        series: [],
-        categories: [],
-      };
-      return oData;
-    },
     userComparison: (oLocal) => {
       const oData = {
         series: [],
         categories: [],
       };
+      const oUser = oLocal.getProperty("/userData");
+      const aUsers = [];
+      const aPoints = [];
+      aUsers.push(`${oUser.firstName} ${oUser.lastName}`);
+      aPoints.push(oUser.points);
+      const aRankedUsers = oLocal
+        .getProperty("/rankedUsers")
+        .filter((el) => el.id !== oUser.id);
+      for (let i = 0; i < 10; i++) {
+        if (!aRankedUsers[i]) {
+          break;
+        }
+        aUsers.push(`${aRankedUsers[i].firstName} ${aRankedUsers[i].lastName}`);
+        aPoints.push(aRankedUsers[i].points);
+      }
+      oData.categories = aUsers;
+      oData.series = aPoints;
       return oData;
     },
   };

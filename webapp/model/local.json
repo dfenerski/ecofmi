@@ -63,22 +63,15 @@
     {
       "chartId": "userChart2",
       "type": "basicColumn",
-      "title": "Chart2",
-      "description": "Description2",
+      "title": "Points by Day",
+      "description": "Eco - Points you have earned in the past days.",
       "dataPreset": "ptsByDay"
-    },
-    {
-      "chartId": "userChart3",
-      "type": "basicColumn",
-      "title": "Chart3",
-      "description": "Description3",
-      "dataPreset": "ptsByLog"
     },
     {
       "chartId": "userChart4",
       "type": "basicColumn",
-      "title": "Chart4",
-      "description": "Description4",
+      "title": "Points by Users",
+      "description": "See how you compare against our top performers!",
       "dataPreset": "userComparison"
     }
   ]

@@ -27,9 +27,9 @@
                 </VBox>
             </HeaderContainer>
             <ScrollContainer>
-                <Carousel pages="{path: 'local>/userCharts', factory: '.userChartsFactory'}">
+                <Carousel id="chartCarousel" pages="{path: 'local>/userCharts', factory: '.userChartsFactory'}">
                     <customLayout>
-                        <CarouselLayout visiblePagesCount="{= ${device>/system/phone} ? 1 : 3 }" />
+                        <CarouselLayout visiblePagesCount="{= ${device>/system/phone} ? 1 : 2 }" />
                     </customLayout>
                 </Carousel>
             </ScrollContainer>
