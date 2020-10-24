@@ -16,8 +16,8 @@
                         <Column importance="High">
                             <Text text="Video" />
                         </Column>
-                        <Column hAlign="End" importance="Medium">
-                            <Text text="Messages" />
+                        <Column hAlign="End" importance="High">
+                            <Text text="Actions" />
                         </Column>
                     </columns>
                     <items>
@@ -26,11 +26,23 @@
                                 <FlexBox height="25vh" renderType="Bare">
                                     <x:Video class="vjs-fill" url="{local>url}" contentType="{local>contentType}" />
                                 </FlexBox>
-                                <Button type="Transparent" icon="sap-icon://discussion" press="">
-                                    <customData>
-                                        <core:CustomData key="docId" value="{local>id}" />
-                                    </customData>
-                                </Button>
+                                <HBox renderType="Bare" justifyContent="End">
+                                    <Button type="Transparent" icon="sap-icon://accept" press="confirmLogAction($event, true)">
+                                        <customData>
+                                            <core:CustomData key="docId" value="{local>id}" />
+                                        </customData>
+                                    </Button>
+                                    <Button type="Transparent" icon="sap-icon://decline" press="confirmLogAction($event, false)">
+                                        <customData>
+                                            <core:CustomData key="docId" value="{local>id}" />
+                                        </customData>
+                                    </Button>
+                                    <Button type="Transparent" icon="sap-icon://discussion" press="handleOpenEditDialog">
+                                        <customData>
+                                            <core:CustomData key="docId" value="{local>id}" />
+                                        </customData>
+                                    </Button>
+                                </HBox>
                             </cells>
                         </ColumnListItem>
                     </items>
