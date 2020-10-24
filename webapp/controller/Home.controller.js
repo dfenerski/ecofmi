@@ -12,12 +12,12 @@ sap.ui.define(
         this.getRouter().getRoute("RouteHome").attachPatternMatched(() => {
           oLocal.setProperty("/menu/currentView", "home");
         });
-        this.testClassification();
+        // this.testClassification();
       },
       testClassification: function () {
-        let img = loadImage("https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Can%28Easy_Open_Can%29.JPG/360px-Can%28Easy_Open_Can%29.JPG");
+        const oImg = loadImage("https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Can%28Easy_Open_Can%29.JPG/360px-Can%28Easy_Open_Can%29.JPG");
         setTimeout(() => {
-          classifier.classify(img).then((oRes) => {
+          classifier.classify(oImg).then((oRes) => {
             console.log(oRes);
           });
         }, 500)
@@ -43,10 +43,34 @@ sap.ui.define(
         const oFile = oEvent.getSource().oFileUpload.files[0];
         const dNow = new Date();
         const oLogData = oLocal.getProperty("/newLogData");
-        oLogData.timestamp = dNow.getTime();
-        oLogData.file.contentType = oFile.type;
-        oLogData.file.name = oFile.name;
-        oLogData.file.ref = oFile;
+        if (!(oFile.type.includes("video") || oFile.type.includes("image"))) {
+          return;
+        }
+        const sUploaderType = oEvent.getSource().getCustomData()[0];
+        if (sUploaderType === "vidMode") {
+          oLogData.timestamp = dNow.getTime();
+          oLogData.file.contentType = oFile.type;
+          oLogData.file.name = oFile.name;
+          oLogData.file.ref = oFile;
+        } else {
+          // const toBase64 = (file) => new Promise((resolve, reject) => {
+          //   const reader = new FileReader();
+          //   reader.readAsDataURL(file);
+          //   reader.onload = () => resolve(reader.result);
+          //   reader.onerror = error => reject(error);
+          // });
+          toBase64(oFile).then((sBase64) => {
+            oLogData.timestamp = dNow.getTime();
+            oLogData.pictures.push({
+              contentType: oFile.type,
+              name: oFile.name,
+              ref: oFile,
+              // src: sBase64
+            })
+          })
+
+        }
+
         oLocal.setProperty("/newLogData", oLogData);
       },
       handleLogSubmit: function (oEvent) {
@@ -61,6 +85,8 @@ sap.ui.define(
           publisherId: oLocal.getProperty("/userData/id"),
           status: "pending",
           points: 0,
+          url: "",
+          pictures: [],
           messages: [
             {
               senderId: oUser.id,
@@ -72,57 +98,120 @@ sap.ui.define(
         };
         let bOk;
         sap.ui.core.BusyIndicator.show(0);
-        oStorage
-          .child("logs/" + oLogData.file.name)
-          .put(oLogData.file.ref, { contentType: oLogData.file.contentType })
-          .then(function (oSnapshot) {
-            oSnapshot.ref
-              .getDownloadURL()
-              .then(function (sUrl) {
-                console.log(
-                  "File URL:",
-                  sUrl,
-                  "File type:",
-                  oLogData.file.contentType
-                );
-                oLog.url = sUrl;
-                oLog.contentType = oLogData.file.contentType;
-                bOk = true;
-              })
-              .catch((oErr) => {
-                MessageBox.error(
-                  "The following error occured: " + oErr.message
-                );
-                bOk = false;
-              })
-              .finally(() => {
-                if (bOk) {
-                  oDB
-                    .collection("logs")
-                    .add(oLog)
-                    .then(function (oRef) {
-                      bOk = true;
-                    })
-                    .catch(function (oErr) {
-                      sap.ui.core.BusyIndicator.hide();
-                      MessageBox.error(
-                        "The following error occured: " + oErr.message
-                      );
-                      bOk = false;
-                    })
-                    .finally(() => {
-                      sap.ui.core.BusyIndicator.hide();
-                      sap.m.MessageToast.show(
-                        bOk ? "Item added!" : "Error adding item!"
-                      );
-                    });
-                }
-              });
+        if (oLogData.pictures.length === 0) {
+          oStorage
+            .child("logs/" + oLogData.file.name)
+            .put(oLogData.file.ref, { contentType: oLogData.file.contentType })
+            .then(function (oSnapshot) {
+              oSnapshot.ref
+                .getDownloadURL()
+                .then(function (sUrl) {
+                  console.log(
+                    "File URL:",
+                    sUrl,
+                    "File type:",
+                    oLogData.file.contentType
+                  );
+                  oLog.url = sUrl;
+                  oLog.contentType = oLogData.file.contentType;
+                  bOk = true;
+                })
+                .catch((oErr) => {
+                  MessageBox.error(
+                    "The following error occured: " + oErr.message
+                  );
+                  bOk = false;
+                })
+                .finally(() => {
+                  if (bOk) {
+                    oDB
+                      .collection("logs")
+                      .add(oLog)
+                      .then(function (oRef) {
+                        bOk = true;
+                      })
+                      .catch(function (oErr) {
+                        sap.ui.core.BusyIndicator.hide();
+                        MessageBox.error(
+                          "The following error occured: " + oErr.message
+                        );
+                        bOk = false;
+                      })
+                      .finally(() => {
+                        oLocal.setProperty("/newLogData", {
+                          "mode": "vidMode",
+                          "timestamp": 0,
+                          "message": "",
+                          "file": {
+                            "contentType": "",
+                            "data": null
+                          },
+                          "pictures": []
+                        });
+                        sap.ui.core.BusyIndicator.hide();
+                        sap.m.MessageToast.show(
+                          bOk ? "Item added!" : "Error adding item!"
+                        );
+                      });
+                  }
+                });
+            })
+            .catch(function (oErr) {
+              sap.ui.core.BusyIndicator.hide();
+              MessageBox.error("The following error occured: " + oErr.message);
+            });
+        } else {
+          const aUploadPromises = oLogData.pictures.map((oPicture) => {
+            oStorage
+              .child("logs/" + oPicture.name)
+              .put(oPicture.ref, { contentType: oPicture.contentType })
           })
-          .catch(function (oErr) {
+          Promise.all[aUploadPromises].then((aSnaps) => {
+            Promise.all(aSnaps.map((oSnap) => oSnap.ref.getDownloadURL())).then((aUrls) => {
+              oLog.pictures = [...aUrls];
+            }).catch((oErr) => {
+              MessageBox.error(
+                "The following error occured: " + oErr.message
+              );
+              bOk = false;
+            }).finally(() => {
+              if (bOk) {
+                oDB
+                  .collection("logs")
+                  .add(oLog)
+                  .then(function (oRef) {
+                    bOk = true;
+                  })
+                  .catch(function (oErr) {
+                    sap.ui.core.BusyIndicator.hide();
+                    MessageBox.error(
+                      "The following error occured: " + oErr.message
+                    );
+                    bOk = false;
+                  })
+                  .finally(() => {
+                    oLocal.setProperty("/newLogData", {
+                      "mode": "vidMode",
+                      "timestamp": 0,
+                      "message": "",
+                      "file": {
+                        "contentType": "",
+                        "data": null
+                      },
+                      "pictures": []
+                    });
+                    sap.ui.core.BusyIndicator.hide();
+                    sap.m.MessageToast.show(
+                      bOk ? "Item added!" : "Error adding item!"
+                    );
+                  });
+              }
+            });
+          }).catch(function (oErr) {
             sap.ui.core.BusyIndicator.hide();
             MessageBox.error("The following error occured: " + oErr.message);
           });
+        }
       },
       handleOpenEditDialog: function (oEvent) {
         const sKey = oEvent.getSource().getCustomData()[0].getValue();
