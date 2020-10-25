@@ -1,8 +1,4 @@
-<mvc:View controllerName="fmi.Eco.controller.LogCheck"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    xmlns:x="fmi.Eco.lib.controls">
+<mvc:View controllerName="fmi.Eco.controller.LogCheck" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:x="fmi.Eco.lib.controls">
     <Page showHeader="false">
         <content>
             <IconTabBar select="handleLogFilterSelect">
@@ -14,7 +10,7 @@
                     <IconTabFilter icon="sap-icon://decline" iconColor="Negative" count="{path: 'local>/logs', formatter: '.formatter.getRejectedLogs' }" text="Rejected" key="rejected" />
                 </items>
             </IconTabBar>
-            <ScrollContainer vertical="false" horizontal="true" height="calc(100vh - 15px)">
+            <ScrollContainer vertical="true" horizontal="false" height="calc(100vh - 190px)">
                 <Table id="logsTable" items="{local>/logs}" autoPopinMode="true">
                     <columns>
                         <Column importance="High">
@@ -28,7 +24,7 @@
                         <ColumnListItem>
                             <cells>
                                 <FlexBox height="25vh" renderType="Bare">
-                                    <Carousel pages="{path: 'local>files', factory: '.visualiseLogFile'}"/>
+                                    <Carousel pages="{path: 'local>files', factory: '.visualiseLogFile'}" />
                                     <!-- <x:Video class="vjs-fill" url="{local>url}" contentType="{local>contentType}" /> -->
                                 </FlexBox>
                                 <HBox renderType="Bare" justifyContent="End">

@@ -2969,21 +2969,21 @@ function keyEvents() {
   }, false)
 
   canvas.addEventListener('touchcancel', function () {
-    // evt.preventDefault()
+    evt.preventDefault()
   }, false);
 
   canvas.addEventListener('touchstart', function (evt) {
-    //evt.preventDefault()
+    evt.preventDefault()
     pause = false;
   }, false);
 
   canvas.addEventListener('touchend', function (evt) {
-    //evt.preventDefault()
+    evt.preventDefault()
     pause = true;
   }, false);
 
   canvas.addEventListener('touchmove', function (evt) {
-    // evt.preventDefault()
+    evt.preventDefault()
     let p = getCanvasRelativeMousePosition(evt, canvas)
     player.pos.x = p.x;
     player.pos.y = p.y;
@@ -3176,7 +3176,7 @@ function main() {
 
   var drawInfos = [];
 
-  let background = loadImageAndCreateTextureInfo('asset/game/background-colours.jpg');
+  let background = loadImageAndCreateTextureInfo('asset/game/2levelgame.png');
   let heart = loadImageAndCreateTextureInfo('asset/game/heart.png')
 
   currScrollPos = -2400 + currCanvasH;
@@ -3246,7 +3246,7 @@ function main() {
 
     let copy = player.score;
     let topX = 0;
-    let topY = currCanvasH - scoreH - 42;
+    let topY = currCanvasH - scoreH - 100;
     let str = "";
 
     for (let i = 0; i < 5; i++) {
@@ -3260,7 +3260,7 @@ function main() {
     }
 
     topX = currCanvasW - currPlayerW;
-    topY = currCanvasH - currPlayerW - 42;
+    topY = currCanvasH - currPlayerW - 100;
 
     for (let i = 0; i < player.lives; i++) {
       drawImage(heart.texture, currPlayerW, currPlayerH, topX, topY);
