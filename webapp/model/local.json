@@ -23,7 +23,9 @@
         "title": "Tips & Info",
         "icon": "sap-icon://hint",
         "key": "info"
-      },
+      }
+    ],
+    "elevatedItems": [
       {
         "title": "Review Logs",
         "icon": "sap-icon://inspection",

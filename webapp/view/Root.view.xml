@@ -26,7 +26,9 @@
 								<tnt:NavigationListItem text="{local>title}" icon="{local>icon}" key="{local>key}" />
 							</tnt:NavigationList>
 							<tnt:fixedItem>
-								<!-- <tnt:NavigationList /> -->
+								<tnt:NavigationList items="{local>/menu/elevatedItems}" expanded="{= !${device>/system/phone} }">
+									<tnt:NavigationListItem text="{local>title}" icon="{local>icon}" key="{local>key}" />
+								</tnt:NavigationList>
 							</tnt:fixedItem>
 						</tnt:SideNavigation>
 					</tnt:sideContent>
