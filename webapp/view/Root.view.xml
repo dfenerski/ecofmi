@@ -1,7 +1,4 @@
-<mvc:View controllerName="fmi.Eco.controller.Root"
-	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-	xmlns="sap.m"
-	xmlns:tnt="sap.tnt">
+<mvc:View controllerName="fmi.Eco.controller.Root" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt">
 	<Shell id="rootShell" appWidthLimited="false">
 		<App id="rootApp">
 			<pages>
@@ -13,7 +10,7 @@
 									<OverflowToolbarLayoutData priority="NeverOverflow" />
 								</layoutData>
 							</Button>
-							<Title text="EcoBox"/>
+							<Title text="EcoBox" />
 							<ToolbarSpacer width="20px" />
 							<ToolbarSpacer />
 							<Avatar initials="{= ${local>/userData/firstName}.charAt(0) + ${local>/userData/lastName}.charAt(0)}" displaySize="XS" />
@@ -27,7 +24,7 @@
 							</tnt:NavigationList>
 							<tnt:fixedItem>
 								<tnt:NavigationList items="{local>/menu/elevatedItems}" expanded="{= !${device>/system/phone} }">
-									<tnt:NavigationListItem text="{local>title}" icon="{local>icon}" key="{local>key}" />
+									<tnt:NavigationListItem text="{local>title}" icon="{local>icon}" key="{local>key}" visible="{local>/userData/isAdmin}" />
 								</tnt:NavigationList>
 							</tnt:fixedItem>
 						</tnt:SideNavigation>

@@ -1,5 +1,5 @@
 <mvc:View controllerName="fmi.Eco.controller.TipAdmin" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
-    <Page showHeader="false">
+    <Page showHeader="false" visible="{local>/userData/isAdmin}">
         <content>
             <ScrollContainer vertical="true" horizontal="false" height="calc(100vh - 420px)">
                 <Table items="{local>/tips}" autoPopinMode="true" headerText="Current listed tips">

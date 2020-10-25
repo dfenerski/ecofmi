@@ -1,5 +1,5 @@
 <mvc:View controllerName="fmi.Eco.controller.LogCheck" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:x="fmi.Eco.lib.controls">
-    <Page showHeader="false">
+    <Page showHeader="false" visible="{local>/userData/isAdmin}">
         <content>
             <IconTabBar select="handleLogFilterSelect">
                 <items>

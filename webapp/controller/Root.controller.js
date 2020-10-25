@@ -187,6 +187,7 @@ sap.ui.define(
                 lastName: oData.lastName,
                 firstName: oData.firstName,
                 email: oData.email,
+                isAdmin: false,
                 points: 0,
               })
               .then(function () {
