@@ -3,29 +3,24 @@
         <content>
             <List items="{local>/tips}" headerText="Latest News and Tips">
                 <CustomListItem>
-                    <HBox renderType="Bare" justifyContent="SpaceBetween">
-                        <HBox renderType="Bare">
-                            <core:Icon src="sap-icon://e-care" size="250%" class="sapUiSmallMarginTop sapUiTinyMarginBegin" color="Positive" />
-                            <VBox renderType="Bare" class="sapUiTinyMarginBegin sapUiSmallMarginTop">
-                                <Title text="{local>title}" />
-                                <Text text="{local>description}" />
-                            </VBox>
-                        </HBox>
-                        <HBox renderType="Bare">
-                            <NumericContent class="sapUiSmallMarginEnd" value="{local>points}" scale="Upvotes" />
-                            <VBox renderType="Bare" visible="{parts:[{path: 'local>/userData/id'}, {path: 'local>voters'}], formatter: '.formatter.getUserNotVoted'}">
-                                <Button icon="sap-icon://arrow-top" type="Accept" tooltip="This is helpful" press="handleTipVote($event, true)">
-                                    <customData>
-                                        <core:CustomData key="tipId" value="{local>id}" />
-                                    </customData>
-                                </Button>
-                                <Button icon="sap-icon://arrow-bottom" type="Reject" tooltip="This is not helpful" press="handleTipVote($event, false)">
-                                    <customData>
-                                        <core:CustomData key="tipId" value="{local>id}" />
-                                    </customData>
-                                </Button>
-                            </VBox>
-                        </HBox>
+                    <HBox renderType="Bare" width="100%" justifyContent="SpaceBetween">
+                        <VBox renderType="Bare" justifyContent="Begin" class="sapUiTinyMarginBegin sapUiSmallMarginTop" width="90%">
+                            <Title text="{local>title}" />
+                            <Text text="{local>description}" />
+                            <ObjectNumber class="sapUiTinyMarginTopBottom" number="{local>points}" unit="Upvotes" />
+                        </VBox>
+                        <VBox renderType="Bare" _visible="{parts:[{path: 'local>/userData/id'}, {path: 'local>voters'}], formatter: '.formatter.getUserNotVoted'}">
+                            <Button icon="sap-icon://arrow-top" type="Accept" tooltip="This is helpful" press="handleTipVote($event, true)">
+                                <customData>
+                                    <core:CustomData key="tipId" value="{local>id}" />
+                                </customData>
+                            </Button>
+                            <Button icon="sap-icon://arrow-bottom" type="Reject" tooltip="This is not helpful" press="handleTipVote($event, false)">
+                                <customData>
+                                    <core:CustomData key="tipId" value="{local>id}" />
+                                </customData>
+                            </Button>
+                        </VBox>
                     </HBox>
                 </CustomListItem>
             </List>
