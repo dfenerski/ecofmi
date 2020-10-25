@@ -1,11 +1,7 @@
 {
-  "name": "Eco",
+  "name": "eco",
   "version": "0.0.1",
-  "description": "",
-  "devDependencies": {
-    "@ui5/cli": "1.13.0",
-    "@sap/ui5-builder-webide-extension": "1.0.x"
-  },
+  "description": "Project for the FMI {Codes} 2020 Event",
   "scripts": {
     "build": "ui5 build --clean-dest --include-task=generateManifestBundle generateCachebusterInfo"
   },
@@ -14,5 +10,49 @@
       "@sap/ui5-builder-webide-extension"
     ]
   },
-  "private": "true"
+  "private": "true",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dfenerski/ecofmi.git"
+  },
+  "keywords": [
+    "openui5",
+    "ui",
+    "firebase"
+  ],
+  "author": "Dimitar Fenerski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dfenerski/ecofmi/issues"
+  },
+  "homepage": "https://github.com/dfenerski/ecofmi#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-spread": "^7.10.1",
+    "@babel/preset-env": "^7.11.5",
+    "babel-preset-minify": "^0.5.1",
+    "grunt": "^1.3.0",
+    "grunt-babel": "^8.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-exec": "^3.0.0",
+    "grunt-openui5": "github:SAP/grunt-openui5#master"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "chrome": "58",
+            "ie": "11"
+          }
+        }
+      ]
+    ],
+    "ignore": [
+      "./webapp/lib"
+    ]
+  }
 }
