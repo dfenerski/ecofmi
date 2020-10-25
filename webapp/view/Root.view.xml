@@ -1,4 +1,7 @@
-<mvc:View controllerName="fmi.Eco.controller.Root" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt">
+<mvc:View controllerName="fmi.Eco.controller.Root"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:tnt="sap.tnt">
 	<Shell id="rootShell" appWidthLimited="false">
 		<App id="rootApp">
 			<pages>
@@ -10,6 +13,7 @@
 									<OverflowToolbarLayoutData priority="NeverOverflow" />
 								</layoutData>
 							</Button>
+							<Title text="EcoBox"/>
 							<ToolbarSpacer width="20px" />
 							<ToolbarSpacer />
 							<Avatar initials="{= ${local>/userData/firstName}.charAt(0) + ${local>/userData/lastName}.charAt(0)}" displaySize="XS" />
