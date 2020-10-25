@@ -1,4 +1,8 @@
-<mvc:View controllerName="fmi.Eco.controller.LogCheck" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:x="fmi.Eco.lib.controls">
+<mvc:View controllerName="fmi.Eco.controller.LogCheck"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:x="fmi.Eco.lib.controls">
     <Page showHeader="false">
         <content>
             <IconTabBar select="handleLogFilterSelect">
@@ -24,7 +28,7 @@
                         <ColumnListItem>
                             <cells>
                                 <FlexBox height="25vh" renderType="Bare">
-                                    <x:Video class="vjs-fill" url="{local>url}" contentType="{local>contentType}" />
+                                    <!-- <x:Video class="vjs-fill" url="{local>url}" contentType="{local>contentType}" /> -->
                                 </FlexBox>
                                 <HBox renderType="Bare" justifyContent="End">
                                     <Button type="Transparent" icon="sap-icon://accept" press="confirmLogAction($event, true)">

@@ -1,53 +1,17 @@
-<core:FragmentDefinition height="100%" xmlns:u="sap.ui.unified" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m">
+<core:FragmentDefinition height="100%"
+    xmlns:u="sap.ui.unified"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
     <Dialog title="Add new log" draggable="true" resizable="true">
-        <IconTabBar id="chartEditor" class="solidBackgroundITB" select="onChartEditorTabAction" selectedKey="{local>/newLogData/mode}" expandable="false">
-            <items>
-                <IconTabFilter text="Video Log" key="vidMode">
-                    <content>
-                        <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
-                            <form:content>
-                                <Label text="Choose video to upload" required="true" />
-                                <u:FileUploader tooltip="Upload" uploadComplete="handleLogUpload" uploadOnChange="true">
-                                    <u:customData>
-                                        <core:CustomData key="uploaderType" value="vid" />
-                                    </u:customData>
-                                </u:FileUploader>
-                                <Label text="Add message" />
-                                <TextArea value="{local>/newLogData/message}" placeholder="Add optional video description, explanation or message." rows="4" />
-                            </form:content>
-                        </form:SimpleForm>
-                    </content>
-                </IconTabFilter>
-                <IconTabFilter text="Picture Log" key="picMode">
-                    <content>
-                        <!-- <Label text="Uploaded pictures" />
-                        <Carousel pages="{local>/newLogData/pictures}">
-                            <pages>
-                                <Image src="{local>src}" decorative="false" width="200px" densityAware="false">
-                                    <detailBox>
-                                        <LightBox>
-                                            <LightBoxItem imageSrc="{local>src}" alt="{local>name}" title="{local>name}" />
-                                        </LightBox>
-                                    </detailBox>
-                                </Image>
-                            </pages>
-                        </Carousel> -->
-                        <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
-                            <form:content>
-                                <Label text="Choose picture to upload" required="true" />
-                                <u:FileUploader tooltip="Upload" uploadComplete="handleLogUpload" uploadOnChange="true">
-                                    <u:customData>
-                                        <core:CustomData key="uploaderType" value="pic" />
-                                    </u:customData>
-                                </u:FileUploader>
-                                <Label text="Add message" />
-                                <TextArea value="{local>/newLogData/message}" placeholder="Add optional video description, explanation or message." rows="4" />
-                            </form:content>
-                        </form:SimpleForm>
-                    </content>
-                </IconTabFilter>
-            </items>
-        </IconTabBar>
+        <form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+            <form:content>
+                <Label text="Choose video/images for upload" required="true" />
+                <u:FileUploader tooltip="Upload" uploadComplete="handleLogUpload" uploadOnChange="true"/>
+                <Label text="Add message" />
+                <TextArea value="{local>/newLogData/message}" placeholder="Add optional video description, explanation or message." rows="4" />
+            </form:content>
+        </form:SimpleForm>
         <beginButton>
             <Button text="Submit" press="handleLogSubmit" />
         </beginButton>

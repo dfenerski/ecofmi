@@ -47,14 +47,9 @@
     "password": ""
   },
   "newLogData": {
-    "mode": "vidMode",
     "timestamp": 0,
     "message": "",
-    "file": {
-      "contentType": "",
-      "data": null
-    },
-    "pictures": []
+    "files": []
   },
   "userData": {
     "id": null,

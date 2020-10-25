@@ -1,9 +1,12 @@
-<core:FragmentDefinition height="100%" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:x="fmi.Eco.lib.controls">
+<core:FragmentDefinition height="100%"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:x="fmi.Eco.lib.controls">
     <Dialog id="editLogDialog" title="Log" draggable="true">
         <VBox renderType="Bare" fitContainer="true">
-            <FlexBox height="35vh" renderType="Bare">
+            <!-- <FlexBox height="35vh" renderType="Bare">
                 <x:Video class="vjs-fill" url="{local>url}" contentType="{local>contentType}" />
-            </FlexBox>
+            </FlexBox> -->
             <ScrollContainer horizontal="false" vertical="true" height="100%" width="100%">
                 <ScrollContainer horizontal="false" vertical="true" height="33vh">
                     <List items="{local>messages}">
