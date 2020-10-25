@@ -151,13 +151,16 @@ sap.ui.define(
           const oControl = new Image({
             src: oContext.getProperty("url"),
             decorative: false,
-            width: "170px",
+            height: "25vh",
             densityAware: false,
             detailBox: [
               new LightBox({
                 imageContent: [
                   new LightBoxItem({
                     imageSrc: oContext.getProperty("url"),
+                    subtitle: `${oContext.getProperty(
+                      "predictions/0/label"
+                    )} ${oContext.getProperty("predictions/0/confidence")}`,
                   }),
                 ],
               }),

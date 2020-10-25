@@ -65,21 +65,38 @@ sap.ui.define(
         if (!(oFile.type.includes("video") || oFile.type.includes("image"))) {
           return;
         }
-        // const toBase64 = (file) => new Promise((resolve, reject) => {
-        //   const reader = new FileReader();
-        //   reader.readAsDataURL(file);
-        //   reader.onload = () => resolve(reader.result);
-        //   reader.onerror = error => reject(error);
-        // });
-        // toBase64(oFile).then((sBase64) => {
-        oLogData.timestamp = dNow.getTime();
-        oLogData.files.push({
-          contentType: oFile.type,
-          name: oFile.name,
-          ref: oFile,
-          // src: sBase64
-        });
-        // });
+        if (oFile.type.includes("image")) {
+          const toBase64 = (file) =>
+            new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.onload = () => resolve(reader.result);
+              reader.onerror = (error) => reject(error);
+            });
+          toBase64(oFile).then((sBase64) => {
+            const oImg = loadImage(sBase64);
+            setTimeout(() => {
+              classifier.classify(oImg).then((aRes) => {
+                // console.log(aRes);
+                oLogData.timestamp = dNow.getTime();
+                oLogData.files.push({
+                  contentType: oFile.type,
+                  name: oFile.name,
+                  ref: oFile,
+                  predictions: [...aRes],
+                });
+              });
+            }, 500);
+          });
+        } else {
+          oLogData.timestamp = dNow.getTime();
+          oLogData.files.push({
+            contentType: oFile.type,
+            name: oFile.name,
+            ref: oFile,
+            // src: sBase64
+          });
+        }
 
         oLocal.setProperty("/newLogData", oLogData);
       },
@@ -122,10 +139,19 @@ sap.ui.define(
               .then((aUrls) => {
                 bOk = true;
                 oLog.files = aUrls.map((el, i) => {
-                  return {
-                    url: el,
-                    contentType: oLogData.files[i].contentType,
-                  };
+                  if (oLogData.files[i].contentType.includes("image")) {
+                    return {
+                      url: el,
+                      contentType: oLogData.files[i].contentType,
+                      predictions: [...oLogData.files[i].predictions],
+                    };
+                  } else {
+                    return {
+                      url: el,
+                      contentType: oLogData.files[i].contentType,
+                      predictions: [],
+                    };
+                  }
                 });
               })
               .catch((oErr) => {
@@ -276,6 +302,9 @@ sap.ui.define(
                 imageContent: [
                   new LightBoxItem({
                     imageSrc: oContext.getProperty("url"),
+                    subtitle: `${oContext.getProperty(
+                      "predictions/0/label"
+                    )} ${oContext.getProperty("predictions/0/confidence")}`,
                   }),
                 ],
               }),

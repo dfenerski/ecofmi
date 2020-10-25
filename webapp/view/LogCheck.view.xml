@@ -18,7 +18,7 @@
                 <Table id="logsTable" items="{local>/logs}" autoPopinMode="true">
                     <columns>
                         <Column importance="High">
-                            <Text text="Video" />
+                            <Text text="Files" />
                         </Column>
                         <Column hAlign="End" importance="High">
                             <Text text="Actions" />
