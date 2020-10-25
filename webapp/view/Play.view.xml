@@ -1,10 +1,7 @@
-<mvc:View controllerName="fmi.Eco.controller.Play"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core">
+<mvc:View controllerName="fmi.Eco.controller.Play" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core">
     <Page showHeader="false">
         <content>
-            <core:HTML/>
+            <core:HTML content="&lt;canvas id=&quot;canvas&quot;&gt;&lt;/canvas&gt;" />
         </content>
     </Page>
 </mvc:View>
