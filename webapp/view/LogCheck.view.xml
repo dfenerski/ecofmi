@@ -28,6 +28,7 @@
                         <ColumnListItem>
                             <cells>
                                 <FlexBox height="25vh" renderType="Bare">
+                                    <Carousel pages="{path: 'local>files', factory: '.visualiseLogFile'}"/>
                                     <!-- <x:Video class="vjs-fill" url="{local>url}" contentType="{local>contentType}" /> -->
                                 </FlexBox>
                                 <HBox renderType="Bare" justifyContent="End">
