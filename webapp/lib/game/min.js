@@ -2854,9 +2854,9 @@ let currScrollPos = 0;
 
 
 let type_trash = [
-  { type: "paper", id: 0, imgs: ["asset/game/paper/box.svg", "asset/game/paper/plane.svg", "asset/game/paper/box.svg"] },
+  { type: "paper", id: 0, imgs: ["asset/game/paper/box.svg", "asset/game/paper/plane.svg", "asset/game/paper/news.svg"] },
   { type: "glass", id: 1, imgs: ["asset/game/glass/bottle1.svg", "asset/game/glass/glass1.svg", "asset/game/glass/dish1.svg"] },
-  { type: "metal", id: 2, imgs: ["asset/game/plastic/pbottle1.svg", "asset/game/plastic/pbottle1.svg", "asset/game/plastic/pbottle1.svg"] }
+  { type: "metal", id: 2, imgs: ["asset/game/plastic/pbottle1.svg", "asset/game/plastic/pbottle2.svg", "asset/game/plastic/pen.svg"] }
 ]
 
 let player = {
@@ -2876,7 +2876,7 @@ function generateItem() {
   spawnSpeed += 50;
   speed += 0.01;
 
-  return ({ pos: { x: _new_pos, y: 0, w: 25, h: 25 }, type: _type, img: _img });
+  return ({ pos: { x: _new_pos, y: -currTrashH, w: 25, h: 25 }, type: _type, img: _img });
 }
 
 function ItemIsInTrash(arrTrash) {
