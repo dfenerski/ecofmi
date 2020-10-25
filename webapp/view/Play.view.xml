@@ -1,0 +1,10 @@
+<mvc:View controllerName="fmi.Eco.controller.Play"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page showHeader="false">
+        <content>
+            <core:HTML/>
+        </content>
+    </Page>
+</mvc:View>

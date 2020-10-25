@@ -23,6 +23,11 @@
         "title": "Tips & Info",
         "icon": "sap-icon://hint",
         "key": "info"
+      },
+      {
+        "title": "Trash-o-Catcher 3000",
+        "icon": "sap-icon://play",
+        "key": "play"
       }
     ],
     "elevatedItems": [

@@ -38,7 +38,7 @@ sap.ui.define(
                   Listeners.userLogs.call(this),
                   Listeners.rankedUsers.call(this),
                   Listeners.tips.call(this),
-                  Listeners.logs.call(this)
+                  Listeners.logs.call(this),
                 ]).then((aResponses) => {
                   oLocal.setProperty("/dataLoaded", true);
                   aResponses.forEach((oRes) => {
@@ -101,6 +101,9 @@ sap.ui.define(
             break;
           case "tipadmin":
             this.navTo("RouteTipAdmin");
+            break;
+          case "play":
+            this.navTo("RoutePlay");
             break;
         }
       },

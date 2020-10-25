@@ -124,6 +124,11 @@
           "name": "RouteTipAdmin",
           "pattern": "tipadmin",
           "target": ["TargetTipAdmin"]
+        },
+        {
+          "name": "RoutePlay",
+          "pattern": "play",
+          "target": ["TargetPlay"]
         }
       ],
       "targets": {
@@ -175,6 +180,13 @@
           "clearControlAggregation": false,
           "viewId": "TipAdmin",
           "viewName": "TipAdmin"
+        },
+        "TargetPlay": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Play",
+          "viewName": "Play"
         }
       }
     }
