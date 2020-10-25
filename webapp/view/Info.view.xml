@@ -9,7 +9,7 @@
                             <Text text="{local>description}" />
                             <ObjectNumber class="sapUiTinyMarginTopBottom" number="{local>points}" unit="Upvotes" />
                         </VBox>
-                        <VBox renderType="Bare" _visible="{parts:[{path: 'local>/userData/id'}, {path: 'local>voters'}], formatter: '.formatter.getUserNotVoted'}">
+                        <VBox renderType="Bare" visible="{parts:[{path: 'local>/userData/id'}, {path: 'local>voters'}], formatter: '.formatter.getUserNotVoted'}">
                             <Button icon="sap-icon://arrow-top" type="Accept" tooltip="This is helpful" press="handleTipVote($event, true)">
                                 <customData>
                                     <core:CustomData key="tipId" value="{local>id}" />
