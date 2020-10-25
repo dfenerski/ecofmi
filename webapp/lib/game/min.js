@@ -3176,7 +3176,7 @@ function main() {
 
   var drawInfos = [];
 
-  let background = loadImageAndCreateTextureInfo('asset/game/2levelgame.png');
+  let background = loadImageAndCreateTextureInfo('asset/game/background-colours.jpg');
   let heart = loadImageAndCreateTextureInfo('asset/game/heart.png')
 
   currScrollPos = -2400 + currCanvasH;
