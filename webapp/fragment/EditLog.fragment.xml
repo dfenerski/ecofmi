@@ -4,9 +4,10 @@
     xmlns:x="fmi.Eco.lib.controls">
     <Dialog id="editLogDialog" title="Log" draggable="true">
         <VBox renderType="Bare" fitContainer="true">
-            <!-- <FlexBox height="35vh" renderType="Bare">
-                <x:Video class="vjs-fill" url="{local>url}" contentType="{local>contentType}" />
-            </FlexBox> -->
+            <FlexBox height="35vh" renderType="Bare">
+                <Carousel pages="{path: 'local>files', factory: '.visualiseLogFile'}"/>
+                <!-- <x:Video class="vjs-fill" url="{local>url}" contentType="{local>contentType}" /> -->
+            </FlexBox>
             <ScrollContainer horizontal="false" vertical="true" height="100%" width="100%">
                 <ScrollContainer horizontal="false" vertical="true" height="33vh">
                     <List items="{local>messages}">

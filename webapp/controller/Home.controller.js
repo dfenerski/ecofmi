@@ -1,6 +1,22 @@
 sap.ui.define(
-  ["./BaseController", "sap/ui/core/Fragment", "sap/m/MessageBox"],
-  function (BaseController, Fragment, MessageBox) {
+  [
+    "./BaseController",
+    "sap/ui/core/Fragment",
+    "sap/m/MessageBox",
+    "../lib/controls/Video",
+    "sap/m/Image",
+    "sap/m/LightBox",
+    "sap/m/LightBoxItem",
+  ],
+  function (
+    BaseController,
+    Fragment,
+    MessageBox,
+    Video,
+    Image,
+    LightBox,
+    LightBoxItem
+  ) {
     "use strict";
 
     return BaseController.extend("fmi.Eco.controller.Home", {
@@ -105,7 +121,12 @@ sap.ui.define(
             Promise.all(aSnaps.map((oSnap) => oSnap.ref.getDownloadURL()))
               .then((aUrls) => {
                 bOk = true;
-                oLog.files = [...aUrls];
+                oLog.files = aUrls.map((el, i) => {
+                  return {
+                    url: el,
+                    contentType: oLogData.files[i].contentType,
+                  };
+                });
               })
               .catch((oErr) => {
                 MessageBox.error(
@@ -235,6 +256,33 @@ sap.ui.define(
         return oDocRef.update({
           messages: firebase.firestore.FieldValue.arrayUnion(oMsg),
         });
+      },
+      visualiseLogFile: function (sId, oContext) {
+        const sContentType = oContext.getProperty("contentType");
+        if (sContentType.includes("video")) {
+          const oControl = new Video({
+            url: oContext.getProperty("url"),
+            contentType: oContext.getProperty("contentType"),
+          }).addStyleClass("vjs-fill");
+          return oControl;
+        } else {
+          const oControl = new Image({
+            src: oContext.getProperty("url"),
+            decorative: false,
+            width: "170px",
+            densityAware: false,
+            detailBox: [
+              new LightBox({
+                imageContent: [
+                  new LightBoxItem({
+                    imageSrc: oContext.getProperty("url"),
+                  }),
+                ],
+              }),
+            ],
+          });
+          return oControl;
+        }
       },
     });
   }
